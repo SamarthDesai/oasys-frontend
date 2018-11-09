@@ -4,20 +4,22 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import GeneralHomePage from "./pages/General/GeneralHomePage";
 import SignUpPage from "./pages/General/SignUpPage";
+import UserHomePage from "./pages/User/UserHomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 // All the Routes that are rendered on the browser
 
 export default ({ childProps }) => (
   <Switch>
-    {/*<AuthenticatedRoute
+    {/*<HomeAuthenticatedRoute
       path="/"
       exact
-      component={GeneralHomePage}
+      components={{GeneralHomePage}, {UserHomePage}}
       props={childProps}
     />*/}
     <Route path="/" exact component={GeneralHomePage} />
     <Route path="/signup" exact component={SignUpPage} />
+    <Route path="/home" exact component={UserHomePage} />
     {/*<Route
       path="/therapists/profiles/:uniqueName"
       exact

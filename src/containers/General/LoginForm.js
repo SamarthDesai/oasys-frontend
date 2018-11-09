@@ -31,22 +31,23 @@ class LoginForm extends Component {
     } = this.props.form;
 
     // Only show error after a field is touched.
-    const userNameError =
-      isFieldTouched("userName") && getFieldError("userName");
+    const emailError = isFieldTouched("email") && getFieldError("email");
     const passwordError =
       isFieldTouched("password") && getFieldError("password");
     return (
       <Form layout="inline" onSubmit={this.handleSubmit}>
         <FormItem
-          validateStatus={userNameError ? "error" : ""}
-          help={userNameError || ""}
+          validateStatus={emailError ? "error" : ""}
+          help={emailError || ""}
         >
-          {getFieldDecorator("userName", {
-            rules: [{ required: true, message: "Please input your username!" }]
+          {getFieldDecorator("email", {
+            rules: [
+              { required: true, message: "Please input your Duke email!" }
+            ]
           })(
             <Input
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Username"
+              placeholder="Email"
             />
           )}
         </FormItem>

@@ -16,7 +16,7 @@ class SignUpForm extends Component {
       if (!err) {
         console.log("Received values of form: ", values);
         //Add session so that instead of general home page, it actually renders to user home
-        this.props.history.push("/");
+        this.props.history.push("/home");
       }
     });
   };
@@ -99,17 +99,6 @@ class SignUpForm extends Component {
               placeholder="Confirm Password"
             />
           )}
-        </FormItem>
-        <FormItem {...formItemLayout}>
-          {getFieldDecorator("nickname", {
-            rules: [
-              {
-                required: true,
-                message: "Please input your nickname!",
-                whitespace: true
-              }
-            ]
-          })(<Input placeholder="Nickname" />)}
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit">

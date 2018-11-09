@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 // Route that only activates when a user is authenticated, otherwise redirects to General Home Page
 
-export default ({ component: C, props: cProps, ...rest }) => (
+export default ({ componentAuth: C, props: cProps, ...rest }) => (
   <Route
     {...rest}
     render={props =>
