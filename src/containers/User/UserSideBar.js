@@ -10,6 +10,7 @@ export default () => (
     width={200}
     style={{
       overflow: "auto",
+      marginTop: 64,
       height: "100vh",
       position: "fixed",
       left: 0

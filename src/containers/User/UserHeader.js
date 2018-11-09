@@ -13,7 +13,7 @@ class UserHeader extends Component {
 
     this.state = {
       backgroundColor: "transparent",
-      logo: whiteIcon
+      icon: blueIcon
     };
   }
 
@@ -24,18 +24,20 @@ class UserHeader extends Component {
   render() {
     return (
       <Header
+        mode="horizontal"
         style={{
           position: "fixed",
           zIndex: 1,
           width: "100%",
-          backgroundColor: this.state.backgroundColor
+          backgroundColor: this.state.backgroundColor,
+          lineHeight: "64px"
         }}
       >
         <Row type="flex" justify="space-between" align="middle">
           <Col>
             <Link to="/home">
               <img
-                src={this.state.logo}
+                src={this.state.icon}
                 style={{
                   width: "auto",
                   height: "48px"

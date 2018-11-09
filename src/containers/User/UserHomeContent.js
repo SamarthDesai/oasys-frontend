@@ -37,28 +37,31 @@ class UserHomeContent extends Component {
 
   render() {
     return (
-      <div>
-        <Row>
-          <Col type="flex" align="middle">
-            <div style={{ borderBottom: "1px solid #E9E9E9" }}>
-              <Checkbox
-                indeterminate={this.state.indeterminate}
-                onChange={this.onCheckAllChange}
-                checked={this.state.checkAll}
-              >
-                All
-              </Checkbox>
-            </div>
-            <br />
+      <Row style={{ marginLeft: 200, marginTop: 64 }}>
+        <Col type="flex" align="middle" style={{ marginLeft: 16 }}>
+          <div
+            style={{
+              borderBottom: "1px solid #E9E9E9",
+              marginTop: 16,
+              paddingBottom: 8
+            }}
+          >
+            <Checkbox
+              indeterminate={this.state.indeterminate}
+              onChange={this.onCheckAllChange}
+              checked={this.state.checkAll}
+            >
+              All
+            </Checkbox>
             <CheckboxGroup
               options={plainOptions}
               value={this.state.checkedList}
               onChange={this.onChange}
             />
-            <UserHomeFeed />
-          </Col>
-        </Row>
-      </div>
+          </div>
+          <UserHomeFeed />
+        </Col>
+      </Row>
     );
   }
 }
