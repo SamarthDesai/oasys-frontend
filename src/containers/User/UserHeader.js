@@ -13,7 +13,7 @@ class UserHeader extends Component {
 
     this.state = {
       backgroundColor: "transparent",
-      logo: whiteIcon
+      icon: blueIcon
     };
   }
 
@@ -24,18 +24,20 @@ class UserHeader extends Component {
   render() {
     return (
       <Header
+        mode="horizontal"
         style={{
           position: "fixed",
           zIndex: 1,
           width: "100%",
-          backgroundColor: this.state.backgroundColor
+          backgroundColor: this.state.backgroundColor,
+          lineHeight: "64px"
         }}
       >
         <Row type="flex" justify="space-between" align="middle">
           <Col>
             <Link to="/home">
               <img
-                src={this.state.logo}
+                src={this.state.icon}
                 style={{
                   width: "auto",
                   height: "48px"
@@ -48,16 +50,16 @@ class UserHeader extends Component {
             </Button>
           </Col>
           <Col>
-            <Menu theme="dark" mode="horizontal">
+            <Menu mode="horizontal">
               <Menu.Item key="1">My Groups</Menu.Item>
               <Menu.Item key="2">My Events</Menu.Item>
               <Menu.Item key="3">Saved</Menu.Item>
               <Menu.Item key="4">Notifications</Menu.Item>
+              <Avatar
+                size="small"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
             </Menu>
-            <Avatar
-              size="small"
-              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            />
           </Col>
         </Row>
       </Header>
