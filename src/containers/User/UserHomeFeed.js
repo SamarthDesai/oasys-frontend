@@ -5,7 +5,7 @@ import PostInteraction from "../../components/PostInteraction";
 const listData = [];
 for (let i = 0; i < 10; i++) {
   listData.push({
-    href: "http://ant.design",
+    href: "http://bschwenn.com/",
     title: "Come have dinner with President Price!",
     avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
     description: "Duke Conversations",

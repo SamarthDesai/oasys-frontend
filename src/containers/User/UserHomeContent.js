@@ -5,7 +5,7 @@ import UserHomeFeed from "./UserHomeFeed";
 const CheckboxGroup = Checkbox.Group;
 
 const plainOptions = ["Groups", "Events"];
-const defaultCheckedList = [];
+const defaultCheckedList = ["Groups", "Events"];
 
 class UserHomeContent extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class UserHomeContent extends Component {
 
     this.state = {
       checkedList: defaultCheckedList,
-      indeterminate: true,
+      indeterminate: false,
       checkAll: true
     };
   }

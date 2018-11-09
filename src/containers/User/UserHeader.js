@@ -48,16 +48,16 @@ class UserHeader extends Component {
             </Button>
           </Col>
           <Col>
-            <Menu theme="dark" mode="horizontal">
+            <Menu mode="horizontal">
               <Menu.Item key="1">My Groups</Menu.Item>
               <Menu.Item key="2">My Events</Menu.Item>
               <Menu.Item key="3">Saved</Menu.Item>
               <Menu.Item key="4">Notifications</Menu.Item>
+              <Avatar
+                size="small"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
             </Menu>
-            <Avatar
-              size="small"
-              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            />
           </Col>
         </Row>
       </Header>
