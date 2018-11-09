@@ -46,18 +46,21 @@ class UserHomeContent extends Component {
               paddingBottom: 8
             }}
           >
-            <Checkbox
-              indeterminate={this.state.indeterminate}
-              onChange={this.onCheckAllChange}
-              checked={this.state.checkAll}
-            >
-              All
-            </Checkbox>
-            <CheckboxGroup
-              options={plainOptions}
-              value={this.state.checkedList}
-              onChange={this.onChange}
-            />
+            <span>
+              <Checkbox
+                indeterminate={this.state.indeterminate}
+                onChange={this.onCheckAllChange}
+                checked={this.state.checkAll}
+              >
+                All
+              </Checkbox>
+              <br />
+              <CheckboxGroup
+                options={plainOptions}
+                value={this.state.checkedList}
+                onChange={this.onChange}
+              />
+            </span>
           </div>
           <UserHomeFeed />
         </Col>
