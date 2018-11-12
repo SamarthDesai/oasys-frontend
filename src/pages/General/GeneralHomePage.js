@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
-import GeneralHeader from "../../containers/General/GeneralHeader";
+import GeneralHeaderContainer from "../../containers/General/GeneralHeaderContainer";
 import GeneralHomeContent from "../../containers/General/GeneralHomeContent";
-import GeneralFooter from "../../containers/General/GeneralFooter";
+import GeneralFooter from "../../components/GeneralFooter";
 
 class GeneralHomePage extends Component {
   //     isAuthenticated: false,
@@ -48,7 +48,7 @@ class GeneralHomePage extends Component {
     return (
       // !this.state.isAuthenticating && (
       <Layout>
-        <GeneralHeader />
+        <GeneralHeaderContainer />
         <GeneralHomeContent />
         <GeneralFooter />
       </Layout>
