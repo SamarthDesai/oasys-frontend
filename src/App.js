@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { Layout } from "antd";
+import UserHeaderContainer from "./containers/User/UserHeaderContainer";
+import UserSideBar from "./components/UserSideBar";
 import Routes from "./Routes";
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
+  // constructor() {
+  //   super();
 
   // this.state = {
   //     isAuthenticated: false,
@@ -39,10 +42,16 @@ class App extends Component {
     // };
 
     return (
-      // !this.state.isAuthenticating && (
-      // <Routes childProps={childProps} />
-      <Routes />
-      // )
+      // !this.state.isAuthenticating && this.state.isAuthenticated ? (
+      <Layout>
+        <UserHeaderContainer />
+        <Layout>
+          <UserSideBar />
+          {/* <Routes childProps={childProps} /> */}
+          <Routes />
+        </Layout>
+      </Layout>
+      // ) : <Routes />
     );
   }
 }

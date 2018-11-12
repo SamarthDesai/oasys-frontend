@@ -4,7 +4,7 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import GeneralHomePage from "./pages/General/GeneralHomePage";
 import SignUpPage from "./pages/General/SignUpPage";
-import UserHomePage from "./pages/User/UserHomePage";
+import UserHomeContainer from "./containers/User/UserHomeContainer";
 import NotFoundPage from "./pages/NotFoundPage";
 
 // All the Routes that are rendered on the browser
@@ -14,12 +14,12 @@ export default ({ childProps }) => (
     {/*<HomeAuthenticatedRoute
       path="/"
       exact
-      components={{GeneralHomePage}, {UserHomePage}}
+      components={{GeneralHomePage}, {UserHomeContainer}}
       props={childProps}
     />*/}
     <Route path="/" exact component={GeneralHomePage} />
     <Route path="/signup" exact component={SignUpPage} />
-    <Route path="/home" exact component={UserHomePage} />
+    <Route path="/home" exact component={UserHomeContainer} />
     {/*<Route
       path="/therapists/profiles/:uniqueName"
       exact
