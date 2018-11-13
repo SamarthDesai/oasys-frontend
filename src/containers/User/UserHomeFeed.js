@@ -13,7 +13,8 @@ for (let i = 0; i < 10; i++) {
     title: "Come have dinner with President Price!",
     avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
     description: "Duke Conversations",
-    content: "Come talk to President Price about the future of Duke!"
+    content: "Come talk to President Price about the future of Duke!" +
+        "test branch"
   });
 }
 
