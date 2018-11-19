@@ -29,25 +29,19 @@ class UserHomeFeed extends Component {
   }
 
   componentDidMount() {
-      fetch(API, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-          },
-          mode: 'no-cors',
-          body: JSON.stringify({
-              'client_id': 'oasys',
-              'client_secret': 'XY7kmzoNzl100@localhost:8080/oauth/token',
-              'grant_type': 'password'
-          })
-      })
-
-          .then(function(response) {
-            return response;
-        })
-        .then(function(myJson) {
-            console.log(JSON.stringify(myJson));
-        });
+    fetch('http://localhost:80/oauth/token', {
+	  method: 'POST',
+	  body: 'username=b&password=jwtpass&grant_type=password',
+	  headers: {
+		"Content-Type": "application/x-www-form-urlencoded",
+		"Authorization": "Basic " + Buffer.from('oasys:XY7kmzoNzl100').toString('base64'),
+	  },
+	  mode: 'no-cors'
+	}).then(function(response) {
+	  return response.json();
+	}).then(function(data) {
+	  console.log(data);
+	});
   }
 
   render() {
