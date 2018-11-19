@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import HomeProfileComponent from "../../components/HomeProfileComponent";
 
 class HomeProfileContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       fullName: "",
