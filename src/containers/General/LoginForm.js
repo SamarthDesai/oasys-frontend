@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { withCookies, Cookies } from "react-cookie";
 import { withRouter } from "react-router-dom";
 import { Form, Icon, Input, Button } from "antd";
+import { login } from '../../utils/AuthUtils'
 
 const FormItem = Form.Item;
 
@@ -15,7 +15,7 @@ class LoginForm extends Component {
     this.props.form.validateFields();
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -24,42 +24,13 @@ class LoginForm extends Component {
     });
     const username = this.props.form.getFieldValue("email");
     const password = this.props.form.getFieldValue("password");
-    console.log(username);
-    console.log(password);
-    //  var self = this;
-    fetch("http://localhost:8080/oauth/token", {
-      method: "POST",
-      body: `username=${username}&password=${password}&grant_type=password`,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "X-Requested-With": "XMLHttpRequest",
-        // TODO (Ben): we really shouldn't expose these secrets client-side lol
-        Authorization:
-          "Basic " + Buffer.from("oasys:XY7kmzoNzl100").toString("base64")
-      },
-      mode: "cors"
-    })
-      .then(response => response.json())
-      .then(function(responseJson) {
-        //self.setState(responseJson);
-        // self.props.access_token = responseJson;
-        // Cookie is set automatically?
-        console.log(responseJson);
-        const cookies = new Cookies();
-        const now = new Date();
-        // expires_in is in seconds (I think) and getTime() is milliseconds
-        const storeUntil = now.getTime() + responseJson.expires_in * 1000;
-        const expiryDate = new Date(storeUntil);
-        console.log(storeUntil);
-        cookies.set("JSESSIONID", responseJson.access_token, {
-          path: "/",
-          expires: expiryDate
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    this.props.history.push("/home");
+    const success = await login(username, password);
+    if (success) {
+      this.props.history.push("/home");
+    } else {
+      // TODO (Ben): should probably just display little red error message here
+      this.props.history.push("/")
+    }
   };
 
   render() {

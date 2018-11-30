@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Layout } from "antd";
 import UserHeaderContainer from "./containers/User/UserHeaderContainer";
 import UserSideBar from "./components/UserSideBar";
-import { getAuthHeaderValue } from "./GetToken.js";
 import Routes from "./Routes";
 import { getToken } from "./utils/AuthUtils";
 

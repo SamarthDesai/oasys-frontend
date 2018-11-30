@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Form, Input, Tooltip, Icon, Button, Select } from "antd";
+import { login } from '../../utils/AuthUtils'
+import { postJson } from '../../utils/RestUtils'
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -19,60 +21,32 @@ class SignUpForm extends Component {
     this.props.form.validateFieldsAndScroll( async (err, values) => {
       if (!err) {
         const username = values.email.substr(0, values.email.indexOf("@"));
-        console.log("Received values of form: ", values);
-        await fetch("http://localhost:8080/persons", {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json",
-              "X-Requested-With": "XMLHttpRequest"
-            },
-            mode: 'cors',
-            body: JSON.stringify({
-              name: values.name,
-              graduationYear: values.graduationYear,
-              email: values.email,
-              password: values.password,
-              username: username
-            })
-        }).then(response => response.json())
-          .then(responseJson => {
-            if (responseJson.name == null) {
-              this.props.history.push("/signup");
-            }
-          });
-
-        await fetch("http://localhost:8080/persons/" + username + "/interests", {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest"
-          },
-          mode: 'cors',
-          body: JSON.stringify(values.interests)
+        // Add the user
+        await postJson("/persons", {
+          name: values.name,
+          graduationYear: values.graduationYear,
+          email: values.email,
+          password: values.password,
+          username: username
         });
 
-        await fetch("http://localhost:8080/persons/" + username + "/majors", {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest"
-          },
-          mode: 'cors',
-          body: JSON.stringify(values.majors)
-        });
+        // Log in the user automatically
+        const success = await login(username, values.password);
+        if (!success) {
+          // TODO (Ben): should probably display error message instead of just reloading
+          this.props.history.push("/signup")
+        }
 
-        await fetch("http://localhost:8080/persons/" + username + "/minors", {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest"
-          },
-          mode: 'cors',
-          body: JSON.stringify(values.minors)
-        }).then(response => { console.log(response.json())} );
+        // Add interests and studies to new user
+        if (values.interests != null)
+          postJson("/persons/" + username + "/interests", values.interests);
+        if (values.majors != null)
+          postJson("/persons/" + username + "/majors", values.majors);
+        if (values.minors != null)
+          postJson("/persons/" + username + "/minors", values.minors);
 
         //Add session so that instead of general home page, it actually renders to user home
-        this.props.history.push("/");
+        this.props.history.push("/home");
       }
     });
   };
