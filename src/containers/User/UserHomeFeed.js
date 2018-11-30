@@ -16,15 +16,16 @@ class UserHomeFeed extends Component {
   async load_posts(page_number) {
     let authHeader = getAuthHeaderValue();
     var self = this;
-    await fetch('http://localhost:8080/feed/' + page_number, {
-      method: 'GET',
+    await fetch("http://localhost:8080/feed/" + page_number, {
+      method: "GET",
       headers: {
-        "Authorization": authHeader,
+        Authorization: authHeader
       }
-    }).then((response) => response.json())
+    })
+      .then(response => response.json())
       .then(function(responseJson) {
-        self.setState({posts: responseJson});
-    });
+        self.setState({ posts: responseJson });
+      });
   }
 
   render() {
@@ -41,7 +42,7 @@ class UserHomeFeed extends Component {
           pageSize: 100
         }}
         dataSource={this.state.posts}
-        renderItem={item => <FeedPostComponent item={item}/> }
+        renderItem={item => <FeedPostComponent item={item} />}
       />
     );
   }

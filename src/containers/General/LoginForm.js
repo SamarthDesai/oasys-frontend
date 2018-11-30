@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withCookies, Cookies } from 'react-cookie';
+import { withCookies, Cookies } from "react-cookie";
 import { withRouter } from "react-router-dom";
 import { Form, Icon, Input, Button } from "antd";
 
@@ -26,18 +26,20 @@ class LoginForm extends Component {
     const password = this.props.form.getFieldValue("password");
     console.log(username);
     console.log(password);
-    var self = this;
-    fetch('http://localhost:8080/oauth/token', {
-      method: 'POST',
+    //  var self = this;
+    fetch("http://localhost:8080/oauth/token", {
+      method: "POST",
       body: `username=${username}&password=${password}&grant_type=password`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         "X-Requested-With": "XMLHttpRequest",
         // TODO (Ben): we really shouldn't expose these secrets client-side lol
-        "Authorization": "Basic " + Buffer.from('oasys:XY7kmzoNzl100').toString('base64'),
+        Authorization:
+          "Basic " + Buffer.from("oasys:XY7kmzoNzl100").toString("base64")
       },
-      mode: 'cors'
-    }).then((response) => response.json())
+      mode: "cors"
+    })
+      .then(response => response.json())
       .then(function(responseJson) {
         //self.setState(responseJson);
         // self.props.access_token = responseJson;
@@ -49,8 +51,12 @@ class LoginForm extends Component {
         const storeUntil = now.getTime() + responseJson.expires_in * 1000;
         const expiryDate = new Date(storeUntil);
         console.log(storeUntil);
-        cookies.set('JSESSIONID', responseJson.access_token, { path: '/', expires: expiryDate });
-      }).catch((error) => {
+        cookies.set("JSESSIONID", responseJson.access_token, {
+          path: "/",
+          expires: expiryDate
+        });
+      })
+      .catch(error => {
         console.error(error);
       });
     this.props.history.push("/home");
@@ -70,44 +76,44 @@ class LoginForm extends Component {
       isFieldTouched("password") && getFieldError("password");
     return (
       <Form layout="inline" onSubmit={this.handleSubmit}>
-      <FormItem
-      validateStatus={emailError ? "error" : ""}
-      help={emailError || ""}
-      >
-      {getFieldDecorator("email", {
-        rules: [
-          { required: true, message: "Please input your Duke email!" }
-        ]
-      })(
-        <Input
-        prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-        placeholder="Email"
-        />
-      )}
-      </FormItem>
-      <FormItem
-      validateStatus={passwordError ? "error" : ""}
-      help={passwordError || ""}
-      >
-      {getFieldDecorator("password", {
-        rules: [{ required: true, message: "Please input your Password!" }]
-      })(
-        <Input
-        prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-        type="password"
-        placeholder="Password"
-        />
-      )}
-      </FormItem>
-      <FormItem>
-      <Button
-      type="primary"
-      htmlType="submit"
-      disabled={hasErrors(getFieldsError())}
-      >
-      Log in
-      </Button>
-      </FormItem>
+        <FormItem
+          validateStatus={emailError ? "error" : ""}
+          help={emailError || ""}
+        >
+          {getFieldDecorator("email", {
+            rules: [
+              { required: true, message: "Please input your Duke email!" }
+            ]
+          })(
+            <Input
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="Email"
+            />
+          )}
+        </FormItem>
+        <FormItem
+          validateStatus={passwordError ? "error" : ""}
+          help={passwordError || ""}
+        >
+          {getFieldDecorator("password", {
+            rules: [{ required: true, message: "Please input your Password!" }]
+          })(
+            <Input
+              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+              type="password"
+              placeholder="Password"
+            />
+          )}
+        </FormItem>
+        <FormItem>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={hasErrors(getFieldsError())}
+          >
+            Log in
+          </Button>
+        </FormItem>
       </Form>
     );
   }

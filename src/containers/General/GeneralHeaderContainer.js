@@ -14,6 +14,14 @@ class GeneralHeaderContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener("scroll", this.listenScrollEvent);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.listenScrollEvent);
+  }
+
   listenScrollEvent = e => {
     if (window.scrollY > 50) {
       this.setState({ backgroundColor: "white" });
@@ -23,14 +31,6 @@ class GeneralHeaderContainer extends Component {
       this.setState({ logo: whiteLogo });
     }
   };
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.listenScrollEvent);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.listenScrollEvent);
-  }
 
   render() {
     return (
