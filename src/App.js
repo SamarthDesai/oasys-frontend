@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
 
-  this.state = {
+    this.state = {
       isAuthenticated: false,
       isAuthenticating: true
     };
@@ -45,11 +45,10 @@ class App extends Component {
             <UserHeaderContainer />
             <Layout>
               <UserSideBar />
-              {/* <Routes childProps={childProps} /> */}
-              <Routes />
+              <Routes childProps={childProps} />
             </Layout>
           </Layout>
-      ) : <Routes />
+      ) : <Routes childProps={childProps}/>
     );
   }
 }

@@ -1,22 +1,78 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Form, Input, Tooltip, Icon, Button } from "antd";
+import { Form, Input, Tooltip, Icon, Button, Select } from "antd";
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 class SignUpForm extends Component {
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      confirmDirty: false,
+      autoCompleteResult: []
+    };
+  }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll( async (err, values) => {
       if (!err) {
+        const username = values.email.substr(0, values.email.indexOf("@"));
         console.log("Received values of form: ", values);
+        await fetch("http://localhost:8080/persons", {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+              "X-Requested-With": "XMLHttpRequest"
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+              name: values.name,
+              graduationYear: values.graduationYear,
+              email: values.email,
+              password: values.password,
+              username: username
+            })
+        }).then(response => response.json())
+          .then(responseJson => {
+            if (responseJson.name == null) {
+              this.props.history.push("/signup");
+            }
+          });
+
+        await fetch("http://localhost:8080/persons/" + username + "/interests", {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          mode: 'cors',
+          body: JSON.stringify(values.interests)
+        });
+
+        await fetch("http://localhost:8080/persons/" + username + "/majors", {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          mode: 'cors',
+          body: JSON.stringify(values.majors)
+        });
+
+        await fetch("http://localhost:8080/persons/" + username + "/minors", {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          mode: 'cors',
+          body: JSON.stringify(values.minors)
+        }).then(response => { console.log(response.json())} );
+
         //Add session so that instead of general home page, it actually renders to user home
-        this.props.history.push("/home");
+        this.props.history.push("/");
       }
     });
   };
@@ -43,17 +99,42 @@ class SignUpForm extends Component {
     callback();
   };
 
+  componentDidMount() {
+    fetch("http://localhost:8080/interest/all", {
+      method: 'GET'
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        this.setState({interests: responseJson.map((interest, idx) => {
+            return <Option key={interest}>{interest}</Option>
+          })})
+      });
+
+    fetch("http://localhost:8080/study/all", {
+      method: 'GET'
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        this.setState({studies: responseJson.map((study, idx) => {
+            return <Option key={study}>{study}</Option>
+          })})
+      });
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
 
     const formItemLayout = {
       wrapperCol: {
-        xs: { span: 12, offset: 0 },
-        sm: { span: 20, offset: 2 }
+        xs: {span: 12, offset: 0},
+        sm: {span: 20, offset: 2}
       }
     };
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} style = {{}}>
+        <FormItem {...formItemLayout}>
+          {getFieldDecorator("name", {})(<Input placeholder="Full Name" />)}
+        </FormItem>
         <FormItem {...formItemLayout}>
           {getFieldDecorator("email", {
             rules: [
@@ -93,12 +174,45 @@ class SignUpForm extends Component {
               }
             ]
           })(
-            <Input
-              type="password"
-              onBlur={this.handleConfirmBlur}
-              placeholder="Confirm Password"
-            />
+              <Input
+                  type="password"
+                  onBlur={this.handleConfirmBlur}
+                  placeholder="Confirm Password"
+              />
           )}
+        </FormItem>
+        <FormItem {...formItemLayout}>
+          {getFieldDecorator("majors", {/*TODO: rules :)*/})
+          (<Select
+            mode="tags"
+            style={{ width: '100%' }}
+            placeholder="Majors"
+          >
+            {this.state.studies}
+          </Select>)}
+        </FormItem>
+        <FormItem {...formItemLayout}>
+          {getFieldDecorator("minors", {/*TODO: rules :)*/})
+          (<Select
+              mode="tags"
+              style={{ width: '100%' }}
+              placeholder="Minors"
+            >
+              {this.state.studies}
+            </Select>)}
+        </FormItem>
+        <FormItem {...formItemLayout}>
+          {getFieldDecorator("graduationYear", {})(<Input placeholder="Graduation Year" />)}
+        </FormItem>
+        <FormItem {...formItemLayout}>
+          {getFieldDecorator("interests", {/*TODO: rules :)*/})
+          (<Select
+              mode="tags"
+              style={{ width: '100%' }}
+              placeholder="Interests"
+          >
+            {this.state.interests}
+          </Select>)}
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit">
