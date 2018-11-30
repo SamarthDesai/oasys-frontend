@@ -44,7 +44,12 @@ class LoginForm extends Component {
         // Cookie is set automatically?
         console.log(responseJson);
         const cookies = new Cookies();
-        cookies.set('JSESSIONID', responseJson.access_token, { path: '/' });
+        const now = new Date();
+        // expires_in is in seconds (I think) and getTime() is milliseconds
+        const storeUntil = now.getTime() + responseJson.expires_in * 1000;
+        const expiryDate = new Date(storeUntil);
+        console.log(storeUntil);
+        cookies.set('JSESSIONID', responseJson.access_token, { path: '/', expires: expiryDate });
       }).catch((error) => {
         console.error(error);
       });
