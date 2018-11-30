@@ -20,41 +20,6 @@ export default ({ childProps }) => (
     <Route path="/" exact component={GeneralHomePage} />
     <Route path="/signup" exact component={SignUpPage} />
     <Route path="/home" exact component={UserHomeContainer} />
-    {/*<Route
-      path="/therapists/profiles/:uniqueName"
-      exact
-      component={TherapistProfile}
-    />
-    {/* <UnauthenticatedRoute
-      path="/signup"
-      exact
-      component={Signup}
-      props={childProps}
-    />
-    {/* <UnauthenticatedRoute
-      path="/create-password"
-      exact
-      component={NewPassword}
-      props={childProps}
-    />
-    <AuthenticatedRoute
-      path="/therapists/info"
-      exact
-      component={TherapistInfo}
-      props={childProps}
-    />
-    <AuthenticatedRoute
-      path="/therapists/edit"
-      exact
-      component={TherapistEdit}
-      props={childProps}
-    />
-    <AuthenticatedRoute
-      path="/superuser/edit/:uniqueName"
-      exact
-      component={SuperUserEdit}
-      props={childProps}
-    /> */}
     <Route component={NotFoundPage} />
   </Switch>
 );

@@ -1,6 +1,6 @@
-import { Cookies } from 'react-cookie';
+import { Cookies } from "react-cookie";
 
-export function getAuthHeaderValue() {
+export const getAuthHeaderValue = () => {
   const cookies = new Cookies();
   return "Bearer " + cookies.get("JSESSIONID");
-}
+};

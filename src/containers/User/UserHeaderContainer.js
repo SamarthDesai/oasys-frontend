@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import UserHeaderComponent from "../../components/UserHeaderComponent";
 
-class UserHeader extends Component {
+class UserHeaderContainer extends Component {
+  constructor() {
+    super();
+
+    this.state = { imagePath: "" };
+  }
   componentDidMount() {
     //Get user info for profile avatar
   }
@@ -11,4 +16,4 @@ class UserHeader extends Component {
   }
 }
 
-export default UserHeader;
+export default UserHeaderContainer;
