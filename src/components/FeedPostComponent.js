@@ -1,28 +1,26 @@
 import React, { Component } from "react";
 import { List, Avatar, Icon } from "antd";
-import PostInteraction from "../../components/PostInteraction";
+import PostInteraction from "./PostInteraction";
 
-export default () => (
+export default ({ item }) => (
   <List.Item
-    key={item.title}
+    // key={item.title}
     actions={[
       <PostInteraction
         icon="pushpin-o"
-        type={this.state.pinned}
-        onClick={this.pinPost}
-        text={this.state.totalPinned}
+        type={item.isPinned}
+        // onClick={this.pinPost}
+        text=""
       />,
-      <PostInteraction
+      /*<PostInteraction
         icon="team-o"
         type={this.state.going}
         onClick={this.goToEvent}
         text={this.state.totalGoing}
-      />,
+      />,*/
       <PostInteraction
         icon="message"
-        type={this.state.commented}
-        onClick={this.comment}
-        text={this.state.totalComments}
+        //onClick={} // TODO (Ben): redirect to main page for post which displays comments
       />
     ]}
     extra={
@@ -38,6 +36,6 @@ export default () => (
       title={<a href={item.href}>{item.title}</a>}
       description={`Hosted by: ${item.description}`}
     />
-    {item.content}
+    {item.body}
   </List.Item>
 );

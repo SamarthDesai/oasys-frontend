@@ -4,6 +4,7 @@ import UserHeaderContainer from "./containers/User/UserHeaderContainer";
 import UserSideBar from "./components/UserSideBar";
 import { getAuthHeaderValue } from "./GetToken.js";
 import Routes from "./Routes";
+import { getToken } from "./utils/AuthUtils";
 
 class App extends Component {
   constructor() {
@@ -16,15 +17,12 @@ class App extends Component {
   }
 
   // Set authenticated state based on whether or not a user has a session (which occurs if a user is logged in)
-  async componentDidMount() {
-    try {
-      if (await let authHeader = getAuthHeaderValue()) {
-        this.userHasAuthenticated(true);
-      }
-    } catch (e) {
-      if (e !== "No current user") {
-        alert(e);
-      }
+  componentDidMount() {
+    const token = getToken();
+    if (token === null || token === "") {
+      this.userHasAuthenticated(false);
+    } else {
+      this.userHasAuthenticated(true);
     }
 
     this.setState({ isAuthenticating: false });
@@ -35,6 +33,7 @@ class App extends Component {
   };
 
   render() {
+    // Pass isAuthenticated state and userHasAuthenticated function as children props to each Route
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated
