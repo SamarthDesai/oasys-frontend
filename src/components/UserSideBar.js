@@ -2,6 +2,7 @@ import React from "react";
 import { Layout, Icon } from "antd";
 import HomeProfileContainer from "../containers/User/HomeProfileContainer";
 import Calendar from "../containers/User/Calendar";
+import PostModalContainer from "../containers/User/PostModalContainer";
 
 const { Sider } = Layout;
 
@@ -17,6 +18,7 @@ export default () => (
     }}
   >
     <HomeProfileContainer />
+    <PostModalContainer />
     <Calendar />
   </Sider>
 );

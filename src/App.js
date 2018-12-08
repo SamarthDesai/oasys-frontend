@@ -18,7 +18,7 @@ class App extends Component {
   // Set authenticated state based on whether or not a user has a session (which occurs if a user is logged in)
   componentDidMount() {
     const token = getToken();
-    if (token === null || token === "") {
+    if (token === undefined || token === "") {
       this.userHasAuthenticated(false);
     } else {
       this.userHasAuthenticated(true);
