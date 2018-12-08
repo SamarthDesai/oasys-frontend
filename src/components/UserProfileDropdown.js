@@ -1,17 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Menu, Avatar, Icon, Dropdown, Anchor } from "antd";
 
 const menu = (
   <Anchor>
     <Menu>
       <Menu.Item>
-        <a href="http://www.alipay.com/">Edit Profile</a>
+        <a href="https://www.youtube.com/watch?v=mjaayCARwro">Edit Profile</a>
       </Menu.Item>
       <Menu.Item>
-        <a href="http://www.taobao.com/">Settings</a>
+        <a href="https://www.youtube.com/watch?v=8Zi-BqCPiOk">Settings</a>
       </Menu.Item>
       <Menu.Item>
-        <a href="http://www.tmall.com/">Log Out</a>
+        <a href="https://www.youtube.com/watch?v=f3NBQcAqyu4&t=2352s">
+          Log Out
+        </a>
       </Menu.Item>
     </Menu>
   </Anchor>

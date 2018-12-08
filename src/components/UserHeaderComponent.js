@@ -47,7 +47,6 @@ export default () => (
             <Menu.Item key="1">My Groups</Menu.Item>
             <Menu.Item key="2">My Events</Menu.Item>
             <Menu.Item key="3">Pinned</Menu.Item>
-            <Menu.Item key="4">Notifications</Menu.Item>
           </Menu>
           <UserProfileDropdown />
         </Row>
