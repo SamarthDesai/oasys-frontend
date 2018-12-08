@@ -11,12 +11,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 export default ({ childProps }) => (
   <Switch>
-    {/*<HomeAuthenticatedRoute
-      path="/"
-      exact
-      components={{GeneralHomePage}, {UserHomeContainer}}
-      props={childProps}
-    />*/}
     <Route path="/" exact component={GeneralHomePage} />
     <Route path="/signup" exact component={SignUpPage} />
     <Route path="/home" exact component={UserHomeContainer} />
