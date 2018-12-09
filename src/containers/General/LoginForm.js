@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Form, Icon, Input, Button } from "antd";
-import { login } from '../../utils/AuthUtils'
+import { login } from "../../utils/AuthUtils";
 
 const FormItem = Form.Item;
 
@@ -29,7 +29,7 @@ class LoginForm extends Component {
       this.props.history.push("/home");
     } else {
       // TODO (Ben): should probably just display little red error message here
-      this.props.history.push("/")
+      this.props.history.push("/");
     }
   };
 
