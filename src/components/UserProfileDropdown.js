@@ -5,13 +5,13 @@ const menu = (
   <Anchor>
     <Menu>
       <Menu.Item>
-        <a href="http://www.alipay.com/">Edit Profile</a>
+        <a href="http://www.alipay.com/" key="edit_profile">Edit Profile</a>
       </Menu.Item>
       <Menu.Item>
-        <a href="http://www.taobao.com/">Settings</a>
+        <a href="http://www.taobao.com/" key="settings">Settings</a>
       </Menu.Item>
       <Menu.Item>
-        <a href="http://www.tmall.com/">Log Out</a>
+        <a href="http://www.tmall.com/" key="logout">Log Out</a>
       </Menu.Item>
     </Menu>
   </Anchor>

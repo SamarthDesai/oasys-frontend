@@ -8,7 +8,7 @@ import blueIcon from "../images/oasys-icon-blue-final-cropped.png";
 
 const { Header } = Layout;
 
-export default () => (
+export default () =>
   <Header
     mode="horizontal"
     style={{
@@ -43,7 +43,10 @@ export default () => (
       </Col>
       <Col>
         <Row type="flex" align="middle">
-          <Menu mode="horizontal">
+          <Menu
+            mode="horizontal"
+            onClick={this.props.handleClick}
+          >
             <Menu.Item key="1">My Groups</Menu.Item>
             <Menu.Item key="2">My Events</Menu.Item>
             <Menu.Item key="3">Pinned</Menu.Item>

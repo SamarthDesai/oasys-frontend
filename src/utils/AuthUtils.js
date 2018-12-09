@@ -51,4 +51,9 @@ export function getToken() {
   return cookies.get("JSESSIONID");
 }
 
+export function logout() {
+  const cookies = new Cookies();
+  cookies.remove("JSESSIONID");
+}
+
 

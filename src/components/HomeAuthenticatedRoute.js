@@ -7,7 +7,7 @@ export default ({ componentAuth: C, props: cProps, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      cProps.isAuthenticated ? (
+      cProps.userHasAuthenticated ? (
         <C {...props} {...cProps} />
       ) : (
         <Redirect

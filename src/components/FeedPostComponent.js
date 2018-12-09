@@ -27,12 +27,12 @@ export default ({ item }) => (
       <img
         width={256}
         alt="event"
-        src="https://today.duke.edu/sites/default/files/styles/story_hero/public/pricemain.jpg?itok=2Inor3zE"
+        src={item.creator.photoPath}
       />
     }
   >
     <List.Item.Meta
-      avatar={<Avatar src={item.avatar} />}
+      avatar={<Avatar src={item.creator.photoPath} />}
       title={<a href={item.href}>{item.title}</a>}
       description={`Hosted by: ${item.description}`}
     />
