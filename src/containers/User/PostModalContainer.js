@@ -31,7 +31,7 @@ class PostModalContainer extends Component {
           console.log(responseJson);
           this.setState({
             flocks: responseJson.map((flock, _idx) => {
-              console.log(flock);
+              console.log("FLOCK: " + flock);
               return <Option value={flock.gid}>{flock.name}</Option>
             })
           })

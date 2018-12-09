@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Form, Input, Tooltip, Icon, Button, Select } from "antd";
-import { login } from '../../utils/AuthUtils'
+import { Form, Input, Tooltip, Icon, Button, Select, Upload } from "antd";
+import {getAuthHeaderValue, login} from '../../utils/AuthUtils'
 import { postJson } from '../../utils/RestUtils'
 
 const FormItem = Form.Item;
@@ -18,16 +18,19 @@ class SignUpForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     this.props.form.validateFieldsAndScroll( async (err, values) => {
       if (!err) {
         const username = values.email.substr(0, values.email.indexOf("@"));
         // Add the user
+        const photoPath = await this.state.photoPathPromise;
         await postJson("/persons", {
           name: values.name,
           graduationYear: values.graduationYear,
           email: values.email,
           password: values.password,
-          username: username
+          username: username,
+          photoPath: photoPath,
         });
 
         // Log in the user automatically
@@ -39,16 +42,23 @@ class SignUpForm extends Component {
 
         // Add interests and studies to new user
         if (values.interests != null)
-          postJson("/persons/" + username + "/interests", values.interests);
+          postJson("/current_user/interests", values.interests);
         if (values.majors != null)
-          postJson("/persons/" + username + "/majors", values.majors);
+          postJson("/current_user/majors", values.majors);
         if (values.minors != null)
-          postJson("/persons/" + username + "/minors", values.minors);
+          postJson("/current_user/minors", values.minors);
 
         //Add session so that instead of general home page, it actually renders to user home
         this.props.history.push("/home");
       }
     });
+  };
+
+  upload = data => {
+    let form = new FormData();
+    form.append('file', data.file, data.file.name);
+    let result = postJson("/image", form, null, false);
+    this.setState({photoPathPromise: result});
   };
 
   handleConfirmBlur = e => {
@@ -123,6 +133,7 @@ class SignUpForm extends Component {
             ]
           })(<Input placeholder="E-mail" />)}
         </FormItem>
+
         <FormItem {...formItemLayout}>
           {getFieldDecorator("password", {
             rules: [
@@ -187,6 +198,31 @@ class SignUpForm extends Component {
           >
             {this.state.interests}
           </Select>)}
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+        >
+          {getFieldDecorator('upload', {
+            label: "Profile Image",
+            valuePropName: 'imageUrl',
+          })(
+            <Upload
+              name="photo"
+              action="http://localhost:8080/image"
+              customRequest={this.upload}
+              headers={{
+                Authorization: getAuthHeaderValue(),
+
+              }}
+              listType="picture"
+              multiple={false}
+              withCredentials={false}
+            >
+              <Button>
+                <Icon type="upload" /> Select Profile Photo
+              </Button>
+            </Upload>
+          )}
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit">
