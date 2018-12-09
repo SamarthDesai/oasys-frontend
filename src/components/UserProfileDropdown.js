@@ -1,18 +1,18 @@
 import React from "react";
-import { Menu, Avatar, Icon, Dropdown, Anchor } from "antd";
+import { Link } from "react-router-dom";
+import { Menu, Avatar, Icon, Dropdown, Anchor, Button } from "antd";
+import LogoutContainer from "../containers/User/LogoutContainer";
 
 const menu = (
   <Anchor>
     <Menu>
       <Menu.Item>
-        <a href="http://www.alipay.com/">Edit Profile</a>
+        <Link to="/editProfile">Edit Profile</Link>
       </Menu.Item>
       <Menu.Item>
-        <a href="http://www.taobao.com/">Settings</a>
+        <Link to="/settings">Settings</Link>
       </Menu.Item>
-      <Menu.Item>
-        <a href="http://www.tmall.com/">Log Out</a>
-      </Menu.Item>
+      <LogoutContainer />
     </Menu>
   </Anchor>
 );

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Layout } from "antd";
 import UserHeaderContainer from "./containers/User/UserHeaderContainer";
 import UserSideBar from "./components/UserSideBar";
+import { getAuthHeaderValue } from "./GetToken.js";
 import Routes from "./Routes";
 import { getToken } from "./utils/AuthUtils";
 
@@ -18,7 +19,7 @@ class App extends Component {
   // Set authenticated state based on whether or not a user has a session (which occurs if a user is logged in)
   componentDidMount() {
     const token = getToken();
-    if (token === undefined || token === "") {
+    if (token === null || token === "") {
       this.userHasAuthenticated(false);
     } else {
       this.userHasAuthenticated(true);
@@ -38,16 +39,16 @@ class App extends Component {
       userHasAuthenticated: this.userHasAuthenticated
     };
 
-    return (
-      !this.state.isAuthenticating && this.state.isAuthenticated ? (
-          <Layout>
-            <UserHeaderContainer />
-            <Layout>
-              <UserSideBar />
-              <Routes childProps={childProps} />
-            </Layout>
-          </Layout>
-      ) : <Routes childProps={childProps}/>
+    return !this.state.isAuthenticating && this.state.isAuthenticated ? (
+      <Layout>
+        <UserHeaderContainer />
+        <Layout>
+          <UserSideBar />
+          <Routes childProps={childProps} />
+        </Layout>
+      </Layout>
+    ) : (
+      <Routes childProps={childProps} />
     );
   }
 }

@@ -5,21 +5,32 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import GeneralHomePage from "./pages/General/GeneralHomePage";
 import SignUpPage from "./pages/General/SignUpPage";
 import UserHomeContainer from "./containers/User/UserHomeContainer";
+import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
 
 // All the Routes that are rendered on the browser
 
 export default ({ childProps }) => (
   <Switch>
-    {/*<HomeAuthenticatedRoute
-      path="/"
+    <Route path="/" exact component={GeneralHomePage} props={childProps} />
+    <UnauthenticatedRoute
+      path="/signup"
       exact
-      components={{GeneralHomePage}, {UserHomeContainer}}
+      component={SignUpPage}
       props={childProps}
-    />*/}
-    <Route path="/" exact component={GeneralHomePage} />
-    <Route path="/signup" exact component={SignUpPage} />
-    <Route path="/home" exact component={UserHomeContainer} />
+    />
+    <AuthenticatedRoute
+      path="/home"
+      exact
+      component={UserHomeContainer}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/edit-profile"
+      exact
+      component={EditProfileContainer}
+      props={childProps}
+    />
     <Route component={NotFoundPage} />
   </Switch>
 );
