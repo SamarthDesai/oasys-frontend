@@ -7,6 +7,7 @@ import SignUpPage from "./pages/General/SignUpPage";
 import UserHomeContainer from "./containers/User/UserHomeContainer";
 import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
+import UserGroups from "./containers/User/UserGroups";
 
 // All the Routes that are rendered on the browser
 
@@ -31,6 +32,12 @@ export default ({ childProps }) => (
       component={EditProfileContainer}
       props={childProps}
     />
+      <AuthenticatedRoute
+          path={"/groups"}
+          exact
+          component={UserGroups}
+          props={childProps}
+      />
     <Route component={NotFoundPage} />
   </Switch>
 );
