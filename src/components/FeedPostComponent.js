@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { List, Avatar, Icon } from "antd";
 import Button from "antd/es/button/button";
+import Skeleton from "antd/es/skeleton";
 
 export default ({ item, onClick, redirect }) => (
   // TODO: Create backend object for wrapping post/event. Has type var that can be checked here. The two
