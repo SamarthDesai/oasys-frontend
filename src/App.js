@@ -19,7 +19,7 @@ class App extends Component {
   // Set authenticated state based on whether or not a user has a session (which occurs if a user is logged in)
   componentDidMount() {
     const token = getToken();
-    if (token === null || token === "") {
+    if (token === undefined || token === "") {
       this.userHasAuthenticated(false);
     } else {
       this.userHasAuthenticated(true);
@@ -33,13 +33,10 @@ class App extends Component {
   };
 
   render() {
-    // Pass isAuthenticated state and userHasAuthenticated function as children props to each Route
     const childProps = {
-      isAuthenticated: this.state.isAuthenticated,
-      userHasAuthenticated: this.userHasAuthenticated
     };
 
-    return !this.state.isAuthenticating && this.state.isAuthenticated ? (
+    return (
       <Layout>
         <UserHeaderContainer />
         <Layout>
@@ -47,9 +44,7 @@ class App extends Component {
           <Routes childProps={childProps} />
         </Layout>
       </Layout>
-    ) : (
-      <Routes childProps={childProps} />
-    );
+    )
   }
 }
 
