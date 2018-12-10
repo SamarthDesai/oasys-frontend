@@ -4,7 +4,7 @@ import UserHeaderContainer from "./containers/User/UserHeaderContainer";
 import UserSideBar from "./components/UserSideBar";
 import { getAuthHeaderValue } from "./GetToken.js";
 import Routes from "./Routes";
-import { getToken } from "./utils/AuthUtils";
+import {getToken, userHasAuthenticated} from "./utils/AuthUtils";
 
 class App extends Component {
   constructor() {
@@ -36,7 +36,7 @@ class App extends Component {
     const childProps = {
     };
 
-    return (
+    return userHasAuthenticated() ? (
       <Layout>
         <UserHeaderContainer />
         <Layout>
@@ -44,7 +44,9 @@ class App extends Component {
           <Routes childProps={childProps} />
         </Layout>
       </Layout>
-    )
+    ) : (
+      <Routes childProps={childProps} />
+    );
   }
 }
 

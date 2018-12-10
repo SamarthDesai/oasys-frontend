@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect, Route, Switch} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import GeneralHomePage from "./pages/General/GeneralHomePage";
@@ -7,22 +7,13 @@ import SignUpPage from "./pages/General/SignUpPage";
 import UserHomeContainer from "./containers/User/UserHomeContainer";
 import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
-import {userHasAuthenticated} from "./utils/AuthUtils";
+import PostContainer from "./containers/User/PostContainer";
 
 // All the Routes that are rendered on the browser
 
 export default ({ childProps }) => (
   <Switch>
-    <Route
-      path="/"
-      render={props =>
-        userHasAuthenticated() ? (
-          <UserHomeContainer props={childProps} />
-        ) : (
-          <GeneralHomePage/>
-        )
-      }
-    />
+    <Route path="/" exact component={GeneralHomePage} props={childProps} />
     <UnauthenticatedRoute
       path="/signup"
       exact
@@ -39,6 +30,11 @@ export default ({ childProps }) => (
       path="/edit-profile"
       exact
       component={EditProfileContainer}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/posts/:pid"
+      exact component={PostContainer}
       props={childProps}
     />
     <Route component={NotFoundPage} />
