@@ -14,6 +14,7 @@ export default () => (
       marginTop: 64,
       height: "100%",
       position: "fixed",
+      backgroundColor: "transparent",
       left: 0
     }}
   >

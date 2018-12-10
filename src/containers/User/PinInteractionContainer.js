@@ -14,6 +14,7 @@ class PinInteractionContainer extends Component {
   componentDidMount() {
     //Check if something has been pinned by current user, check total pins by all users
   }
+  
 
   pin = () => {};
 

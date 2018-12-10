@@ -7,11 +7,13 @@ import SignUpPage from "./pages/General/SignUpPage";
 import UserHomeContainer from "./containers/User/UserHomeContainer";
 import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
+import GroupPage from "./pages/GroupPage";
 
 // All the Routes that are rendered on the browser
 
 export default ({ childProps }) => (
   <Switch>
+    <Route path="/groups/:groupName" exact component={GroupPage}/>
     <Route path="/" exact component={GeneralHomePage} props={childProps} />
     <UnauthenticatedRoute
       path="/signup"
@@ -32,5 +34,6 @@ export default ({ childProps }) => (
       props={childProps}
     />
     <Route component={NotFoundPage} />
+
   </Switch>
 );
