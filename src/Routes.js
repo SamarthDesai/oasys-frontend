@@ -9,6 +9,7 @@ import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
 import UserGroups from "./containers/User/UserGroups";
 import PostContainer from "./containers/User/PostContainer";
+import EventListingContainer from "./containers/User/EventListingContainer";
 
 // All the Routes that are rendered on the browser
 
@@ -44,6 +45,12 @@ export default ({ childProps }) => (
       exact component={PostContainer}
       props={childProps}
     />
+      <AuthenticatedRoute
+          path="/events"
+          exact component={EventListingContainer}
+          props={childProps}
+      />
+
     <Route component={NotFoundPage} />
   </Switch>
 );

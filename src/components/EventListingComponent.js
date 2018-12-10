@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Avatar } from "antd";
+import {List, Avatar, Row, Col} from "antd";
 import PinInteractionContainer from "../containers/User/PinInteractionContainer";
 import GoingInteractionContainer from "../containers/User/GoingInteractionContainer";
 import CommentInteractionContainer from "../containers/User/CommentInteractionContainer";
@@ -7,6 +7,8 @@ import CommentInteractionContainer from "../containers/User/CommentInteractionCo
 const { Item } = List;
 
 export default ({ item }) => (
+    <Row style={{ marginLeft: 256, marginTop: 64, marginRight: 16 }}>
+        <Col type="flex" align="middle" style={{ marginLeft: 16 }}>
   <Item
     key={item.title}
     actions={[
@@ -14,19 +16,13 @@ export default ({ item }) => (
       <GoingInteractionContainer />,
       <CommentInteractionContainer />
     ]}
-    extra={
-      <img
-        width={256}
-        alt="event"
-        src="https://today.duke.edu/sites/default/files/styles/story_hero/public/pricemain.jpg?itok=2Inor3zE"
-      />
-    }
   >
     <List.Item.Meta
-      avatar={<Avatar src={item.avatar} />}
-      title={<a href={item.href}>{item.title}</a>}
-      description={`Hosted by: ${item.description}`}
+      title={<a href={item.href}>{item.name} on {item.time.toString()}</a>}
+      description={`Hosted by ${item.group} at ${item.location}`}
     />
-    {item.content}
+    {item.body}
   </Item>
+        </Col>
+    </Row>
 );

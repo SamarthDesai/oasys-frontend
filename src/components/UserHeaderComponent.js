@@ -49,7 +49,9 @@ export default () => (
             <Menu.Item key="1">My Groups
                 <Link to="/groups"></Link>
             </Menu.Item>
-            <Menu.Item key="2">My Events</Menu.Item>
+            <Menu.Item key="2">My Events
+                <Link to="/events"/>
+            </Menu.Item>
             <Menu.Item key="3">Pinned</Menu.Item>
           </Menu>
           <UserProfileDropdown />

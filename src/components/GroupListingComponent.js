@@ -37,8 +37,7 @@ export default ({ item }) => (
     >
         <List.Item.Meta
             title={<a href={item.href}>{item.name}</a>}
-            description={`This group is ${item.photoPath}`}
-            //description={`This group is ${item.name}`}
+            description={`${item.description}`}
         />
     </List.Item>
         </Col>

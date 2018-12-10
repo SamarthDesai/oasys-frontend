@@ -13,8 +13,7 @@
     "react-cookie": "^3.0.4",
     "react-dom": "^16.6.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.0",
-    "react-addons-update": "^15.6.2"
+    "react-scripts": "2.1.0"
   },
   "scripts": {
     "start": "react-app-rewired start",

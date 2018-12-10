@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import {Button, Col, List, Row, Select} from "antd";
 import {getAuthHeaderValue} from "../../utils/AuthUtils";
 import GroupListingComponent from "../../components/GroupListingComponent";
-import update from 'react-addons-update'; // ES6
 
 const Option = Select.Option;
 
@@ -27,16 +26,6 @@ class UserGroups extends Component {
             .then((responseJson) => {
                 console.log(responseJson);
                 this.setState({'groups': responseJson});
-                for (var i = 0; i < this.state.groups.length; i++) {
-                    if (this.state.groups[i].photoPath === "NULL") {
-                        this.state.groups[i].photoPath="https://today.duke.edu/sites/default/files/styles/story_hero/public/pricemain.jpg?itok=2Inor3zE";
-                        console.log(this.state.groups[i].photoPath);
-
-                        this.setState({
-                            'group': update(this.state.groups, {i: {photoPath: {$set: 'https://today.duke.edu/sites/default/files/styles/story_hero/public/pricemain.jpg?itok=2Inor3zE'}}})
-                        });
-                    }
-                }
             });
     }
 
