@@ -11,34 +11,12 @@ class EventListingContainer extends Component {
     this.state = {
       pinned: "false",
       totalPinned: 0,
-        events: [
-            {
-                name: "Duke Conversations Dinner",
-                time: new Date(),
-                location: "A nice house",
-                body: "Dinner w a prof! it will be so fun and awesome. wow",
-                group: "Duke Conversations"
-            },
-            {
-                name: "Second Duke Conversations Dinner",
-                time: new Date(),
-                location: "Another nice house",
-                body: "Dinner w a prof! it will be so fun and awesome. wow pt 2",
-                group: "Duke Conversations"
-            },
-            {
-                name: "Third Duke Conversations Dinner",
-                time: new Date(),
-                location: "Another nice house",
-                body: "Dinner w a prof! it will be so fun and awesome. wow pt 3",
-                group: "Duke Conversations"
-            }
-        ]
+        events: []
     };
-    //this.load_events(0);
+    this.load_events(0);
   }
 
-/*    async load_events(page_number) {
+    async load_events(page_number) {
         let authHeader = getAuthHeaderValue();
         var self = this;
         await fetch("http://localhost:8080/current_user/events/" + page_number, {
@@ -51,20 +29,20 @@ class EventListingContainer extends Component {
             .then(function(responseJson) {
                 self.setState({ 'events': responseJson });
             });
-    }*/
+    }
 
     render() {
         return (
             <List
                 itemLayout="horizontal"
                 size="large"
-/*                pagination={{
+                pagination={{
                     onChange: page => {
                         this.load_events(page);
                         console.log(page);
                         },
                     pageSize: 100
-                }}*/
+                }}
                 dataSource={this.state.events}
                 renderItem={item => <EventListingComponent item={item} />}
             />

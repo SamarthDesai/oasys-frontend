@@ -14,14 +14,13 @@ export default ({ item }) => (
     actions={[
       <PinInteractionContainer />,
       <GoingInteractionContainer />,
-      <CommentInteractionContainer />
     ]}
   >
     <List.Item.Meta
-      title={<a href={item.href}>{item.name} on {item.time.toString()}</a>}
-      description={`Hosted by ${item.group} at ${item.location}`}
+      title={<a href={item.href}>{item.name}</a>}
+      description={`${item.location} at ${item.time}`}
     />
-    {item.body}
+    {item.summary}
   </Item>
         </Col>
     </Row>

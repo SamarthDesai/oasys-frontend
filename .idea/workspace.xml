@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b1226e74-e7b7-4818-a466-d0caf58c83e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EventListingComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventListingComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GroupListingComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GroupListingComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserHeaderComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserHeaderComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/User/EventListingContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/User/EventListingContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/User/UserGroups.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/User/UserGroups.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +56,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="17" />
-          <entry key="JavaScript" value="5169" />
+          <entry key="JavaScript" value="5191" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -69,7 +64,7 @@
       <usages-collector id="statistics.spring.boot.mvc.usages" />
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="5169" />
+          <entry key="js" value="5191" />
           <entry key="json" value="17" />
         </counts>
       </usages-collector>
@@ -128,8 +123,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/EventListingComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -140,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/User/EventListingContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+            <state relative-caret-position="127">
+              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -362,12 +357,12 @@
       <workItem from="1544384764938" duration="2991000" />
       <workItem from="1544387924705" duration="4638000" />
       <workItem from="1544400237301" duration="14705000" />
-      <workItem from="1544465164936" duration="6225000" />
+      <workItem from="1544465164936" duration="8248000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87565000" />
+    <option name="totallyTimeSpent" value="89588000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1047" height="806" extended-state="0" />
@@ -665,8 +660,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/User/EventListingContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        <state relative-caret-position="127">
+          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -675,8 +670,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/EventListingComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
