@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { List } from "antd";
 import { getAuthHeaderValue } from "../../utils/AuthUtils.js";
 import FeedPostComponent from "../../components/FeedPostComponent";
+import {withRouter} from "react-router-dom";
 
 class UserHomeFeed extends Component {
   constructor(props) {
@@ -28,11 +29,15 @@ class UserHomeFeed extends Component {
       });
   }
 
+  redirectToPost = pid => {
+    this.props.history.push("/posts/" + pid )
+  }
+
   render() {
     console.log(this.state.posts);
     return (
       <List
-        itemLayout="vertical"
+        itemLayout="horizontal"
         size="large"
         pagination={{
           onChange: page => {
@@ -42,10 +47,10 @@ class UserHomeFeed extends Component {
           pageSize: 100
         }}
         dataSource={this.state.posts}
-        renderItem={item => <FeedPostComponent item={item} />}
+        renderItem={item => <FeedPostComponent item={item} redirect={this.redirectToPost} />}
       />
     );
   }
 }
 
-export default UserHomeFeed;
+export default withRouter(UserHomeFeed);

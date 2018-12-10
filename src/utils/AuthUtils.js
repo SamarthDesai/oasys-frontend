@@ -51,4 +51,8 @@ export function getToken() {
   return cookies.get("JSESSIONID");
 }
 
+export function userHasAuthenticated() {
+  return getToken() !== undefined;
+}
+
 

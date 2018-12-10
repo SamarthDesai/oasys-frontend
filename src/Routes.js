@@ -8,6 +8,7 @@ import UserHomeContainer from "./containers/User/UserHomeContainer";
 import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
 import UserGroups from "./containers/User/UserGroups";
+import PostContainer from "./containers/User/PostContainer";
 
 // All the Routes that are rendered on the browser
 
@@ -38,6 +39,11 @@ export default ({ childProps }) => (
           component={UserGroups}
           props={childProps}
       />
+    <AuthenticatedRoute
+      path="/posts/:pid"
+      exact component={PostContainer}
+      props={childProps}
+    />
     <Route component={NotFoundPage} />
   </Switch>
 );

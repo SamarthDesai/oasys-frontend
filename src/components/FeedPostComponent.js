@@ -1,40 +1,30 @@
 import React, { Component } from "react";
 import { List, Avatar, Icon } from "antd";
-import PostInteraction from "./PostInteraction";
+import Button from "antd/es/button/button";
 
-export default ({ item }) => (
+export default ({ item, onClick, redirect }) => (
+  // TODO: Create backend object for wrapping post/event. Has type var that can be checked here. The two
+  // will be rendered in different ways (just different info and hrefs).
   <List.Item
-    // key={item.title}
-    actions={[
-      <PostInteraction
-        icon="pushpin-o"
-        type={item.isPinned}
-        // onClick={this.pinPost}
-        text=""
-      />,
-      /*<PostInteraction
-        icon="team-o"
-        type={this.state.going}
-        onClick={this.goToEvent}
-        text={this.state.totalGoing}
-      />,*/
-      <PostInteraction
-        icon="message"
-        //onClick={} // TODO (Ben): redirect to main page for post which displays comments
-      />
-    ]}
-    extra={
-      <img
-        width={256}
-        alt="event"
-        src="https://today.duke.edu/sites/default/files/styles/story_hero/public/pricemain.jpg?itok=2Inor3zE"
-      />
+    actions={
+      [
+        <Button
+          type="primary"
+          shape="square"
+          icon="message"
+          text={item.numberOfComments}
+          size={48}
+          onClick={e=>{ redirect(item.pid)}}
+        >
+          {" " + item.numberOfComments}
+        </Button>
+      ]
     }
   >
     <List.Item.Meta
-      avatar={<Avatar src={item.avatar} />}
-      title={<a href={item.href}>{item.title}</a>}
-      description={`Hosted by: ${item.description}`}
+      avatar={<Avatar src={item.flock.photoPath} />}
+      title={<a href={"/groups/" + item.flock.gid }>{item.flock.name}</a>}
+      description={<a href={"/users/" + item.creator.username } >{item.creator.name}</a>}
     />
     {item.body}
   </List.Item>
