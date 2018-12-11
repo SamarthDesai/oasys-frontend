@@ -14,15 +14,15 @@ class GroupListingContainer extends Component {
 
     this.state = {
       visible: false,
-      //groupName: this.props.match.params.groupName
+      groupName: this.props.name
     };
 
-    //console.log(this.props.match.params.groupName);
+    console.log(this.state.groupName);
   }
 
   componentDidMount() {
     let authHeader = getAuthHeaderValue();
-    fetch("http://localhost:8080/flocks/name/NeuroCare" , {
+    fetch("http://localhost:8080/flocks/name/" + this.state.groupName, {
       method: 'GET',
       headers: {
                 Authorization: authHeader
@@ -41,7 +41,7 @@ class GroupListingContainer extends Component {
     return (
       
       <div>
-        
+        {this.state.groupInfo ? this.state.groupInfo.toString() : "loading" }
       </div>
     );
   }
