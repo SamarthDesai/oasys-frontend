@@ -7,13 +7,26 @@ import SignUpPage from "./pages/General/SignUpPage";
 import UserHomeContainer from "./containers/User/UserHomeContainer";
 import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
+
 import GroupPage from "./pages/GroupPage";
+
+import UserGroups from "./containers/User/UserGroups";
+import PostContainer from "./containers/User/PostContainer";
+import EventListingContainer from "./containers/User/EventListingContainer";
+
 
 // All the Routes that are rendered on the browser
 
 export default ({ childProps }) => (
   <Switch>
-    <Route path="/groups/:groupName" exact component={GroupPage}/>
+    //<Route path="/groups/:groupName" exact component={GroupPage}/>
+
+    <AuthenticatedRoute
+      path="/groups/:groupName"
+      exact component={GroupPage}
+      props={childProps}
+    />
+
     <Route path="/" exact component={GeneralHomePage} props={childProps} />
     <UnauthenticatedRoute
       path="/signup"
@@ -33,6 +46,23 @@ export default ({ childProps }) => (
       component={EditProfileContainer}
       props={childProps}
     />
+      <AuthenticatedRoute
+          path={"/groups"}
+          exact
+          component={UserGroups}
+          props={childProps}
+      />
+    <AuthenticatedRoute
+      path="/posts/:pid"
+      exact component={PostContainer}
+      props={childProps}
+    />
+      <AuthenticatedRoute
+          path="/events"
+          exact component={EventListingContainer}
+          props={childProps}
+      />
+
     <Route component={NotFoundPage} />
 
   </Switch>

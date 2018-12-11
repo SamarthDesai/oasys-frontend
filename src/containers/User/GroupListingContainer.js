@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Modal, Button, Form, Select, Radio, Input} from 'antd';
+import {Modal, Button, Form, Select, Radio, Input, List} from 'antd';
 import {postJson} from "../../utils/RestUtils";
 import {getAuthHeaderValue} from "../../utils/AuthUtils";
 import {withRouter} from "react-router-dom";
@@ -14,24 +14,32 @@ class GroupListingContainer extends Component {
 
     this.state = {
       visible: false,
-      groupName: this.props.match.params.groupName
+      //groupName: this.props.match.params.groupName
     };
 
-    console.log(this.props.match.params.groupName);
+    //console.log(this.props.match.params.groupName);
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/flocks/name/" + this.state.groupName, {
-      method: "GET"
+    let authHeader = getAuthHeaderValue();
+    fetch("http://localhost:8080/flocks/name/NeuroCare" , {
+      method: 'GET',
+      headers: {
+                Authorization: authHeader
+            }
     }).then(response => response.json())
       .then(responseJson => {
-        this.setState( { groupInfo: responseJson })
+        console.log(responseJson);
+        this.setState( {'groupInfo': responseJson })
       })
+
   }
 
   render() {
-    const {getFieldDecorator} = this.props.form;
+    const groupInfo = this.state.groupInfo;
+    console.log(groupInfo);
     return (
+      
       <div>
         
       </div>
@@ -39,5 +47,4 @@ class GroupListingContainer extends Component {
   }
 }
 
-const WrappedGroupListingContainer = Form.create()(GroupListingContainer);
-export default withRouter(WrappedGroupListingContainer);
+export default GroupListingContainer;

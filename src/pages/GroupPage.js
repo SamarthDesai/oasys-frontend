@@ -44,7 +44,7 @@ class GroupPage extends Component {
               }}
             >
               <GroupListingContainer name={this.props.match.params.groupName}/>
-              TITLE
+
             </div>
           </Col>
         </Row>

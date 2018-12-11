@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserHeaderComponent from "../../components/UserHeaderComponent";
+import {userHasAuthenticated} from "../../utils/AuthUtils";
 
 class UserHeaderContainer extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class UserHeaderContainer extends Component {
   }
 
   render() {
-    return <UserHeaderComponent />;
+    return userHasAuthenticated() ? <UserHeaderComponent /> : <div/>;
   }
 }
 

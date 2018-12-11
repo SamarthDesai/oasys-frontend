@@ -36,7 +36,7 @@ class PostModalContainer extends Component {
             })
           })
         }
-      })
+      });
   }
 
   showModal = () => {
