@@ -34,7 +34,6 @@ class GroupPage extends Component {
             lg={{ span: 8, offset: 8 }}
             xl={{ span: 6, offset: 9 }}
           >
-            <OasysLogo />
             <div
               style={{
                 borderRadius: 5,

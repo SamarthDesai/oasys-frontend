@@ -21,7 +21,7 @@ class UserHomeFeed extends Component {
   loadPosts = async () => {
     const pageNumber = this.state.pageNumber;
     let authHeader = getAuthHeaderValue();
-    await fetch("http://localhost:8080/feed/" + pageNumber, {
+    await fetch("http://localhost:8080/feed/posts/" + pageNumber, {
       method: "GET",
       headers: {
         Authorization: authHeader
@@ -52,7 +52,6 @@ class UserHomeFeed extends Component {
         <Button onClick={this.loadPosts}>Load More</Button>
       </div>
     ) : null;
-    console.log(this.state.posts)
     return (
       <List
         itemLayout="horizontal"

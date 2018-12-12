@@ -3,6 +3,10 @@ import {Modal, Button, Form, Select, Radio, Input, List} from 'antd';
 import {postJson} from "../../utils/RestUtils";
 import {getAuthHeaderValue} from "../../utils/AuthUtils";
 import {withRouter} from "react-router-dom";
+import GroupInfo from "../../components/GroupInfo";
+import EventInteractionComponent from "../../components/EventInteractionComponent";
+import FeedPostComponent from "../../components/FeedPostComponent";
+
 
 const {TextArea} = Input;
 const FormItem = Form.Item;
@@ -14,15 +18,20 @@ class GroupListingContainer extends Component {
 
     this.state = {
       visible: false,
-      groupName: this.props.name
+      groupName: this.props.name,
+        initLoading: true,
+        initLoadingPosts: true,
+        loading: false,
+        pageNumber: 0,
+        posts: []
     };
-
+    this.loadGroupInfo();
     console.log(this.state.groupName);
   }
 
-  componentDidMount() {
+  loadGroupInfo = async () => {
     let authHeader = getAuthHeaderValue();
-    fetch("http://localhost:8080/flocks/name/" + this.state.groupName, {
+    await fetch("http://localhost:8080/flocks/name/" + this.state.groupName, {
       method: 'GET',
       headers: {
                 Authorization: authHeader
@@ -30,20 +39,71 @@ class GroupListingContainer extends Component {
     }).then(response => response.json())
       .then(responseJson => {
         console.log(responseJson);
-        this.setState( {'groupInfo': responseJson })
+        this.setState( {'groupInfo': responseJson,
+                        'initLoading': false});
       })
-
+      this.loadPosts();
   }
+
+  loadPosts = async () => {
+      const pageNumber = this.state.pageNumber;
+      let authHeader = getAuthHeaderValue();
+      console.log("gid : " + this.state.groupInfo.gid);
+      await fetch("http://localhost:8080/flocks/" + this.state.groupInfo.gid + "/feed/" + pageNumber, {
+          method: "GET",
+          headers: {
+              Authorization: authHeader
+          }
+      })
+          .then(response => response.json())
+          .then(responseJson => {
+              console.log(responseJson);
+              this.setState({
+                  posts: this.state.posts.concat(responseJson),
+                  initLoadingPosts: false,
+                  pageNumber: pageNumber + 1
+              });
+          });
+  }
+
+    redirectToPost = pid => {
+        this.props.history.push("/posts/" + pid )
+    }
 
   render() {
     const groupInfo = this.state.groupInfo;
     console.log(groupInfo);
-    return (
-      
-      <div>
-        {this.state.groupInfo ? this.state.groupInfo.toString() : "loading" }
-      </div>
-    );
+    const loadMore = !this.state.initLoadingPosts ? (
+          <div style={{
+              textAlign: 'center', marginTop: 12, height: 32, lineHeight: '32px',
+          }}
+          >
+              <Button onClick={this.loadPosts}>Load More</Button>
+          </div>
+    ) : null;
+
+    if (this.state.initLoading) {
+      return (
+          <h5>loading...</h5>
+      )
+    }
+    else {
+        return (
+            <GroupInfo
+                name={this.state.groupInfo.name}
+                description={this.state.groupInfo.description}
+            />,
+
+            <List
+              itemLayout="horizontal"
+              size="large"
+              loading={this.state.initLoadingPosts}
+              loadMore={loadMore}
+              dataSource={this.state.posts}
+              renderItem={item => <FeedPostComponent item={item} redirect={this.redirectToPost} />}
+        />
+        );
+    }
   }
 }
 
