@@ -5,6 +5,7 @@ import PostComponent from "../../components/PostComponent";
 import CommentComponent from "../../components/CommentComponent";
 import Search from "antd/es/input/Search";
 import {postJson} from "../../utils/RestUtils";
+import {withRouter} from "react-router-dom";
 
 class PostContainer extends Component {
   constructor(props) {
@@ -36,7 +37,9 @@ class PostContainer extends Component {
       .then(responseJson => {
         console.log(responseJson);
         this.setState({post: responseJson})
-      });
+      }).catch(error => {
+       this.props.history.push("/home");
+     });
 
      fetch("http://localhost:8080/posts/" + this.state.post_id + "/comments", {
       method: "GET",
@@ -46,7 +49,10 @@ class PostContainer extends Component {
     }).then(response => response.json())
       .then(responseJson => {
         this.setState({comments: responseJson})
-      });
+      })
+       .catch(error => {
+       this.props.history.push("/home")
+     });
   }
   //
   render() {
@@ -67,6 +73,6 @@ class PostContainer extends Component {
   }
 }
 
-export default PostContainer;
+export default withRouter(PostContainer);
 
 

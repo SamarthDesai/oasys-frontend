@@ -22,7 +22,7 @@ export default ({post}) => {
           <List.Item
             key={item.pid}
             actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />,
-              <IconText type="message" text="2" />]}
+              <IconText type="message" text={item.numberOfComments} />]}
             extra={<img width={272} src={item.flock.photoPath}/>}
           >
             <List.Item.Meta
