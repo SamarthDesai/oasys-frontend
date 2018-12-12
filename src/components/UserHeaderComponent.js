@@ -5,6 +5,7 @@ import UserProfileDropdown from "./UserProfileDropdown";
 
 import whiteIcon from "../images/oasys-icon-white-final-cropped.png";
 import blueIcon from "../images/oasys-icon-blue-final-cropped.png";
+import WrappedNewGroupModalContainer from "../containers/User/NewGroupModalContainer";
 
 const { Header } = Layout;
 
@@ -36,16 +37,23 @@ export default () => (
               alt="oasys"
             />
           </Link>
-          <Button type="primary" size="large" style={{ marginLeft: 16 }}>
-            Discover
-          </Button>
+            <Link to="/discover">
+                <Button type="primary" size="large" style={{ marginLeft: 16 }}>
+                    Discover
+                </Button>
+            </Link>
+          <WrappedNewGroupModalContainer/>
         </Row>
       </Col>
       <Col>
         <Row type="flex" align="middle">
           <Menu mode="horizontal">
-            <Menu.Item key="1">My Groups</Menu.Item>
-            <Menu.Item key="2">My Events</Menu.Item>
+            <Menu.Item key="1">My Groups
+                <Link to="/groups"></Link>
+            </Menu.Item>
+            <Menu.Item key="2">My Events
+                <Link to="/events"/>
+            </Menu.Item>
             <Menu.Item key="3">Pinned</Menu.Item>
           </Menu>
           <UserProfileDropdown />

@@ -6,6 +6,8 @@ import OasysLogo from "../components/OasysLogo";
 class GroupPage extends Component {
   constructor(props) {
     super(props);
+
+    console.log(this.props.match.params.groupName);
   }
 
   render() {
@@ -42,6 +44,7 @@ class GroupPage extends Component {
               }}
             >
               <GroupListingContainer name={this.props.match.params.groupName}/>
+
             </div>
           </Col>
         </Row>
