@@ -27,6 +27,7 @@ class EventListingContainer extends Component {
         })
             .then(response => response.json())
             .then(function(responseJson) {
+                console.log(responseJson);
                 self.setState({ 'events': responseJson });
             });
     }
