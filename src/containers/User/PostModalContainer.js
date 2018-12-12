@@ -20,23 +20,7 @@ class PostModalContainer extends Component {
   componentDidMount() {
     // Instead fetch groups person is admin of
     console.log(getAuthHeaderValue());
-    fetch("http://localhost:8080/current_user/flocks", {
-      method: 'GET',
-      headers: {
-        Authorization: getAuthHeaderValue()
-      }
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        if (responseJson != null) {
-          console.log(responseJson);
-          this.setState({
-            flocks: responseJson.map((flock, _idx) => {
-              console.log(flock);
-              return <Option value={flock.gid}>{flock.name}</Option>
-            })
-          })
-        }
-      })
+    
   }
 
   showModal = () => {
