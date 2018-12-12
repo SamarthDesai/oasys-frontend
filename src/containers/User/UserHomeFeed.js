@@ -21,7 +21,7 @@ class UserHomeFeed extends Component {
   loadPosts = async () => {
     const pageNumber = this.state.pageNumber;
     let authHeader = getAuthHeaderValue();
-    await fetch("http://localhost:8080/feed/posts/" + pageNumber, {
+    await fetch("http://localhost:8080/feed/" + pageNumber, {
       method: "GET",
       headers: {
         Authorization: authHeader

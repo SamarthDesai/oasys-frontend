@@ -13,6 +13,7 @@ import GroupPage from "./pages/GroupPage";
 import UserGroups from "./containers/User/UserGroups";
 import PostContainer from "./containers/User/PostContainer";
 import EventListingContainer from "./containers/User/EventListingContainer";
+import DiscoverContainer from "./containers/User/DiscoverContainer";
 
 
 // All the Routes that are rendered on the browser
@@ -62,7 +63,12 @@ export default ({ childProps }) => (
           exact component={EventListingContainer}
           props={childProps}
       />
-
+      <AuthenticatedRoute
+          path="/discover"
+          exact
+          component={DiscoverContainer}
+          props={childProps}
+      />
     <Route component={NotFoundPage} />
 
   </Switch>

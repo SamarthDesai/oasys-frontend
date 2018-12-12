@@ -37,9 +37,11 @@ export default () => (
               alt="oasys"
             />
           </Link>
-          <Button type="primary" size="large" style={{ marginLeft: 16 }}>
-            Discover
-          </Button>
+            <Link to="/discover">
+                <Button type="primary" size="large" style={{ marginLeft: 16 }}>
+                    Discover
+                </Button>
+            </Link>
           <WrappedNewGroupModalContainer/>
         </Row>
       </Col>
