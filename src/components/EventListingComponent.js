@@ -12,8 +12,7 @@ export default ({ item }) => (
   <Item
     key={item.title}
     actions={[
-      <PinInteractionContainer />,
-      <GoingInteractionContainer />,
+      <GoingInteractionContainer event_id={item.eid}/>,
     ]}
   >
     <List.Item.Meta
@@ -21,6 +20,7 @@ export default ({ item }) => (
       description={`${item.location} at ${item.time}`}
     />
     {item.summary}
+      {item.eid}
   </Item>
         </Col>
     </Row>

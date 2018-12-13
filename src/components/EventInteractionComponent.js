@@ -5,6 +5,7 @@ export default ({ icon, type, onClick, text }) => (
   <span>
     <Button
       shape="circle"
+      size="large"
       icon={icon}
       type={type}
       onClick={onClick}
