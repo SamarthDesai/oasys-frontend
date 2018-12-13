@@ -12,7 +12,8 @@ class App extends Component {
 
     this.state = {
       isAuthenticated: false,
-      isAuthenticating: true
+      isAuthenticating: true,
+      photo: ""
     };
   }
 
@@ -23,6 +24,21 @@ class App extends Component {
       this.userHasAuthenticated(false);
     } else {
       this.userHasAuthenticated(true);
+
+      fetch("http://localhost:8080/current_user/", {
+        method: "GET",
+        headers: {
+          Authorization: getAuthHeaderValue()
+        }
+      })
+        .then(response => response.json())
+        .then(responseJson => {
+          if (responseJson != null) {
+            this.setState({
+              photo: responseJson.photoPath
+            });
+          }
+        });
     }
 
     this.setState({ isAuthenticating: false });
@@ -37,9 +53,9 @@ class App extends Component {
 
     return userHasAuthenticated() ? (
       <Layout>
-        <UserHeaderContainer />
+        <UserHeaderContainer photo={this.state.photo} />
         <Layout>
-          <UserSideBar />
+          <UserSideBar photo={this.state.photo} />
           <Routes childProps={childProps} />
         </Layout>
       </Layout>

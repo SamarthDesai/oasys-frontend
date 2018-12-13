@@ -7,7 +7,9 @@ import { Cookies } from "react-cookie";
 const onClick = ({ key }) => {
   if (key === 3) {
     const cookies = Cookies.get("JSESSIONID");
+    console.log(cookies);
     cookies.remove("JSESSIONID");
+    console.log(cookies);
   }
 };
 
@@ -27,11 +29,11 @@ const menu = (
   </Anchor>
 );
 
-export default ({imagePath}) => (
+export default ({ photo }) => (
   <Dropdown overlay={menu} style={{ position: "sticky" }}>
     <Avatar
       size="medium"
-      src={imagePath}
+      src={photo}
       style={{ marginLeft: 16, backgroundColor: "white" }}
     />
   </Dropdown>
