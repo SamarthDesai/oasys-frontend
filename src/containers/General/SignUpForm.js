@@ -24,6 +24,7 @@ class SignUpForm extends Component {
         const username = values.email.substr(0, values.email.indexOf("@"));
         // Add the user
         const photoPath = await this.state.photoPathPromise;
+        console.log(photoPath);
         await postJson("/persons", {
           name: values.name,
           graduationYear: values.graduationYear,
@@ -56,7 +57,7 @@ class SignUpForm extends Component {
   upload = data => {
     let form = new FormData();
     form.append('file', data.file, data.file.name);
-    let result = postJson("/image", form, null, false);
+    let result = postJson("/image", form, null, false, false);
     this.setState({photoPathPromise: result});
   };
 

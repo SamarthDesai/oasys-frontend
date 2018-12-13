@@ -35,7 +35,7 @@ class EditProfileContainer extends Component {
         // Add interests and studies to new user
 
         if (values.name != null) 
-          postJson("/current_user/name", values.name);
+          postJson("/current_user/name/" + values.name, null);
         if (values.interests != null)
           postJson("/current_user/interests", values.interests);
         if (values.majors != null)
@@ -165,7 +165,13 @@ class EditProfileContainer extends Component {
                 <Icon type="upload" /> Change Profile Photo
               </Button>
             </Upload>
+
           )}
+        </FormItem>
+        <FormItem>
+          <Button type="primary" htmlType="submit">
+            Submit Changes
+          </Button>
         </FormItem>
       </Form>
     );
