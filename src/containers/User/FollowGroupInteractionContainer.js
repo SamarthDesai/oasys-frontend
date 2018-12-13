@@ -3,7 +3,7 @@ import EventInteractionComponent from "../../components/EventInteractionComponen
 import {getAuthHeaderValue} from "../../utils/AuthUtils";
 import {postJson} from "../../utils/RestUtils";
 
-class JoinGroupInteractionContainer extends Component {
+class FollowGroupInteractionContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,9 +11,9 @@ class JoinGroupInteractionContainer extends Component {
         };
     }
 
-    joinGroup = async () => {
-        console.log("join group");
-        await postJson("/flocks/" + this.props.gid + "/requests/0", {});
+    followGroup = async () => {
+        console.log("follow");
+        await postJson("/current_user/follows/" + this.props.gid, {});
     };
 
     render() {
@@ -21,11 +21,11 @@ class JoinGroupInteractionContainer extends Component {
             <EventInteractionComponent
                 icon="team-o"
                 type="primary"
-                onClick={this.joinGroup}
-                text={"Join group"} // can change to number of people in group
+                onClick={this.followGroup}
+                text={"Follow group"} // can change to number of people in group
             />
         )
     }
 }
 
-export default JoinGroupInteractionContainer;
+export default FollowGroupInteractionContainer;

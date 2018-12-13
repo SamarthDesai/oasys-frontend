@@ -4,6 +4,8 @@ import PostInteraction from "./PostInteraction";
 import FeedFilter from "./FeedFilter";
 import UserHomeFeed from "../containers/User/UserHomeFeed";
 import JoinGroupInteractionContainer from "../containers/User/JoinGroupInteractionContainer";
+import FollowGroupInteractionContainer from "../containers/User/FollowGroupInteractionContainer";
+
 
 export default ({ item }) => (
     <Row style={{ marginLeft: 256, marginRight: 16 }}>
@@ -12,6 +14,7 @@ export default ({ item }) => (
                 // key={item.name}
                 actions={[
                     <JoinGroupInteractionContainer gid={item.gid}/>,
+                    <FollowGroupInteractionContainer gid={item.gid}/>
                 ]}
                 extra={
                     <img
