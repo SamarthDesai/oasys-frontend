@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getAuthHeaderValue } from "../../GetToken.js";
 import { Button, Col, List, Row, Select } from "antd";
-import GroupListingComponent from "../../components/GroupListingComponent";
+import DiscoverGroupListingComponent from "../../components/DiscoverGroupListingComponent";
 
 class DiscoverContainer extends Component {
   constructor() {
@@ -52,7 +52,7 @@ class DiscoverContainer extends Component {
           size="large"
           style={{ marginTop: 64 }}
           dataSource={this.state.groups}
-          renderItem={item => <GroupListingComponent item={item} />}
+          renderItem={item => <DiscoverGroupListingComponent item={item} />}
         />
       )
     );
