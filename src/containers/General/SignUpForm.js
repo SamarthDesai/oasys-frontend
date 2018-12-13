@@ -47,7 +47,6 @@ class SignUpForm extends Component {
           postJson("/current_user/majors", values.majors);
         if (values.minors != null)
           postJson("/current_user/minors", values.minors);
-
         //Add session so that instead of general home page, it actually renders to user home
         this.props.history.push("/home");
       }
@@ -94,6 +93,7 @@ class SignUpForm extends Component {
           })})
       });
 
+      console.log(this.props)
     fetch("http://localhost:8080/study/all", {
       method: 'GET'
     }).then((response) => response.json())
