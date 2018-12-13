@@ -24,7 +24,7 @@ export default ({ item, onClick, redirect }) => (
   >
     <List.Item.Meta
       avatar={<Avatar src={item.flock.photoPath} />}
-      title={<a href={"/groups/" + item.flock.gid }>{item.flock.name}</a>}
+      title={<a href={"/groups/" + item.flock.name }>{item.flock.name}</a>}
       description={<a href={"/users/" + item.creator.username } >{item.creator.name}</a>}
     />
     {item.body}

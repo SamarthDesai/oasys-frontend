@@ -49,29 +49,46 @@ class PostContainer extends Component {
       }
     }).then(response => response.json())
       .then(responseJson => {
-          console.log(responseJson);
+          console.log("here are the comments : " + responseJson);
         this.setState({comments: responseJson})
       })
        .catch(error => {
        this.props.history.push("/home")
      });
   }
-  //
+
   render() {
-    return (
-      <Row style={{ marginLeft: 256, marginTop: 64, marginRight: 16 }}>
-        <Col type="flex" align="middle" style={{ marginLeft: 16 }}>
-          <PostComponent post={this.state.post}/>
-          <CommentComponent comments={this.state.comments}/>
-          <Search
-            placeholder="Add a comment"
-            enterButton="Submit"
-            size="large"
-            onSearch={this.submitComment}
-          />
-        </Col>
-      </Row>
-    );
+      if (this.state.comments.length === 0) {
+          return (
+              <Row style={{marginLeft: 256, marginTop: 64, marginRight: 16}}>
+                  <Col type="flex" align="middle" style={{marginLeft: 16}}>
+                      <PostComponent post={this.state.post}/>
+                      <Search
+                          placeholder="Add a comment"
+                          enterButton="Submit"
+                          size="large"
+                          onSearch={this.submitComment}
+                      />
+                  </Col>
+              </Row>
+          );
+      }
+      else {
+          return (
+              <Row style={{marginLeft: 256, marginTop: 64, marginRight: 16}}>
+                  <Col type="flex" align="middle" style={{marginLeft: 16}}>
+                      <PostComponent post={this.state.post}/>
+                      <CommentComponent comments={this.state.comments}/>
+                      <Search
+                          placeholder="Add a comment"
+                          enterButton="Submit"
+                          size="large"
+                          onSearch={this.submitComment}
+                      />
+                  </Col>
+              </Row>
+          );
+      }
   }
 }
 
