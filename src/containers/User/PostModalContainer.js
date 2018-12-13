@@ -1,10 +1,10 @@
-import React, {Component} from "react";
-import {Modal, Button, Form, Select, Radio, Input} from 'antd';
-import {postJson} from "../../utils/RestUtils";
-import {getAuthHeaderValue} from "../../utils/AuthUtils";
-import {withRouter} from "react-router-dom";
+import React, { Component } from "react";
+import { Modal, Button, Form, Select, Radio, Input } from "antd";
+import { postJson } from "../../utils/RestUtils";
+import { getAuthHeaderValue } from "../../utils/AuthUtils";
+import { withRouter } from "react-router-dom";
 
-const {TextArea} = Input;
+const { TextArea } = Input;
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -21,27 +21,28 @@ class PostModalContainer extends Component {
     // Instead fetch groups person is admin of
     console.log(getAuthHeaderValue());
     fetch("http://localhost:8080/current_user/flocks", {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: getAuthHeaderValue()
       }
-    }).then((response) => response.json())
-      .then((responseJson) => {
+    })
+      .then(response => response.json())
+      .then(responseJson => {
         if (responseJson != null) {
           console.log(responseJson);
           this.setState({
             flocks: responseJson.map((flock, _idx) => {
               console.log("FLOCK: " + flock);
-              return <Option value={flock.gid}>{flock.name}</Option>
+              return <Option value={flock.gid}>{flock.name}</Option>;
             })
-          })
+          });
         }
       });
   }
 
   showModal = () => {
     this.setState({
-      visible: true,
+      visible: true
     });
   };
 
@@ -57,20 +58,19 @@ class PostModalContainer extends Component {
       }
     });
     this.setState({
-      visible: false,
+      visible: false
     });
   };
 
-
-  handleCancel = (e) => {
+  handleCancel = e => {
     console.log(e);
     this.setState({
-      visible: false,
+      visible: false
     });
   };
 
   render() {
-    const {getFieldDecorator} = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>
@@ -83,33 +83,31 @@ class PostModalContainer extends Component {
           onCancel={this.handleCancel}
         >
           <Form layout="vertical">
-            <FormItem
-              label="Flock"
-              hasFeedback
-            >
-              {getFieldDecorator('flock', {
-                rules: [
-                  {required: true, message: 'Select group to post in'},
-                ],
+            <FormItem label="Flock" hasFeedback>
+              {getFieldDecorator("flock", {
+                rules: [{ required: true, message: "Select group to post in" }]
               })(
                 <Select
                   showSearch
-                  style={{width: 200}}
+                  style={{ width: 200 }}
                   // placeholder="Select a person"
                   optionFilterProp="children"
                   filterOption={(input, option) =>
-                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                    option.props.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  }
                 >
                   {this.state.flocks}
                 </Select>
               )}
             </FormItem>
             <FormItem label="Body">
-              {getFieldDecorator('body')(<TextArea rows={4}/>)}
+              {getFieldDecorator("body")(<TextArea rows={4} />)}
             </FormItem>
             <FormItem className="collection-create-form_last-form-item">
-              {getFieldDecorator('kind', {
-                initialValue: 'public',
+              {getFieldDecorator("kind", {
+                initialValue: "public"
               })(
                 <Radio.Group>
                   <Radio value="public">Public</Radio>

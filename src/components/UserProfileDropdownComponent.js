@@ -1,18 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu, Avatar, Icon, Dropdown, Anchor, Button } from "antd";
+import { Menu, Avatar, Dropdown, Anchor } from "antd";
 import LogoutContainer from "../containers/User/LogoutContainer";
+import { Cookies } from "react-cookie";
+
+const onClick = ({ key }) => {
+  if (key === 3) {
+    const cookies = Cookies.get("JSESSIONID");
+    cookies.remove("JSESSIONID");
+  }
+};
 
 const menu = (
   <Anchor>
-    <Menu>
-      <Menu.Item>
-        <Link to="/editProfile">Edit Profile</Link>
+    <Menu onClick={onClick}>
+      <Menu.Item key="1">
+        <Link to="/">Edit Profile</Link>
       </Menu.Item>
-      <Menu.Item>
-        <Link to="/settings">Settings</Link>
+      <Menu.Item key="2">
+        <Link to="/">Settings</Link>
       </Menu.Item>
-      <LogoutContainer />
+      <Menu.Item key="3">
+        <Link to="/">Log Out</Link>
+      </Menu.Item>
     </Menu>
   </Anchor>
 );
