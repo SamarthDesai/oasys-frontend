@@ -14,7 +14,7 @@ class EditProfileContainer extends Component {
       confirmDirty: false,
       autoCompleteResult: [],
       name: "",
-      majors: "",
+      //majors: "",
       interests: "",
       gradYear: ""
     };
@@ -101,7 +101,7 @@ class EditProfileContainer extends Component {
           this.setState({ majors: studies });
           }
         });
-      }
+
 
     fetch("http://localhost:8080/study/all", {
       method: 'GET'
@@ -159,6 +159,7 @@ class EditProfileContainer extends Component {
             {this.state.interests}
           </Select>)}
         </FormItem>
+
         <FormItem
           {...formItemLayout}
         >
@@ -184,6 +185,7 @@ class EditProfileContainer extends Component {
             </Upload>
           )}
         </FormItem>
+        
         <FormItem>
           <Button type="primary" htmlType="submit">
             Submit Changes
