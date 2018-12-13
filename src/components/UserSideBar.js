@@ -3,12 +3,12 @@ import { Layout, Icon } from "antd";
 import HomeProfileContainer from "../containers/User/HomeProfileContainer";
 import Calendar from "../containers/User/Calendar";
 import PostModalContainer from "../containers/User/PostModalContainer";
-import {userHasAuthenticated} from "../utils/AuthUtils";
+import { userHasAuthenticated } from "../utils/AuthUtils";
 
 const { Sider } = Layout;
 
-export default () => (
-  userHasAuthenticated() ?
+export default () =>
+  userHasAuthenticated() ? (
     <Sider
       width={256}
       style={{
@@ -21,6 +21,8 @@ export default () => (
     >
       <HomeProfileContainer />
       <PostModalContainer />
-      <Calendar />
-    </Sider> : <div/>
-);
+      {/* <Calendar /> */}
+    </Sider>
+  ) : (
+    <div />
+  );

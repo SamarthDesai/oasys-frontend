@@ -40,7 +40,6 @@ class App extends Component {
         <UserHeaderContainer />
         <Layout>
           <UserSideBar />
-
           <Routes childProps={childProps} />
         </Layout>
       </Layout>

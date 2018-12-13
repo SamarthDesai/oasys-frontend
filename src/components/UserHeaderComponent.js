@@ -56,7 +56,9 @@ export default () => (
               My Events
               <Link to="/events" />
             </Menu.Item>
+            {/*
             <Menu.Item key="3">Pinned</Menu.Item>
+            */}
           </Menu>
           <UserProfileDropdownContainer />
         </Row>
