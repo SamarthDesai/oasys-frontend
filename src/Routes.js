@@ -5,11 +5,11 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import GeneralHomePage from "./pages/General/GeneralHomePage";
 import SignUpPage from "./pages/General/SignUpPage";
 import UserHomeContainer from "./containers/User/UserHomeContainer";
-import EditProfile from "./pages/EditProfile";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import GroupPage from "./pages/GroupPage";
 import EventPage from "./pages/EventPage";
+import EditProfile from "./pages/EditProfile";
 
 import UserGroups from "./containers/User/UserGroups";
 import PostContainer from "./containers/User/PostContainer";

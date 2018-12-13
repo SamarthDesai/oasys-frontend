@@ -1,19 +1,19 @@
 import React from "react";
-import {List, Avatar, Row, Col} from "antd";
+import {List, Avatar, Row, Col, Divider} from "antd";
 import PinInteractionContainer from "../containers/User/PinInteractionContainer";
 import GoingInteractionContainer from "../containers/User/GoingInteractionContainer";
 import CommentInteractionContainer from "../containers/User/CommentInteractionContainer";
 
 const { Item } = List;
 
+
 export default ({ item }) => (
-    <Row style={{ marginLeft: 256, marginTop: 64, marginRight: 16 }}>
-        <Col type="flex" align="middle" style={{ marginLeft: 16 }}>
-  <Item
-    key={item.title}
+    <Row style={{ marginLeft: 256, marginRight: 16 }}>
+    <Col type="flex" align="left" style={{ marginLeft: 16 }}>
+  <List.Item
+    key={item.title}    
     actions={[
-      <PinInteractionContainer />,
-      <GoingInteractionContainer />,
+      <GoingInteractionContainer event_id={item.eid}/>,
     ]}
   >
     <List.Item.Meta
@@ -21,7 +21,12 @@ export default ({ item }) => (
       description={`${item.location} at ${item.time}`}
     />
     {item.summary}
-  </Item>
+  </List.Item>
+
+      {item.eid}
+
+
         </Col>
+        <Divider />
     </Row>
 );

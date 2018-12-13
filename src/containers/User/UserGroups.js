@@ -30,7 +30,6 @@ class UserGroups extends Component {
   }
 
   render() {
-    const groups = this.state.groups;
     return (
       (
         <ul>
@@ -47,6 +46,7 @@ class UserGroups extends Component {
         <List
           itemLayout="vertical"
           size="large"
+          style={{ marginTop: 70 }}
           dataSource={this.state.groups}
           renderItem={item => <GroupListingComponent item={item} />}
         />
