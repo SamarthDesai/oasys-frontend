@@ -33,6 +33,9 @@ class HomeProfileContainer extends Component {
           });
           this.setState({ majors: studies });
         }
+        if (this.props.bio != null){
+          this.setState({ bio: this.props.bio });
+        }
       });
   }
 
@@ -41,7 +44,7 @@ class HomeProfileContainer extends Component {
       <HomeProfileComponent
         fullName={this.props.fullName}
         majors={this.state.majors}
-        bio={this.props.bio.substring(0, 40)}
+        bio={this.state.bio.substring(0, 40)}
         photo={this.props.photo}
       />
     );

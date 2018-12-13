@@ -31,7 +31,7 @@ class SignUpForm extends Component {
           password: values.password,
           username: username,
           photoPath: photoPath,
-        });
+        }, "application/json", true, false);
 
         // Log in the user automatically
         const success = await login(username, values.password);

@@ -1,10 +1,12 @@
 import {getAuthHeaderValue} from "./AuthUtils";
 
-export async function postJson(path, body, contentType="application/json", stringify = true) {
+export async function postJson(path, body, contentType="application/json", stringify = true, includeAuth=true) {
   let headers = {
-    "X-Requested-With": "XMLHttpRequest",
-    "Authorization": getAuthHeaderValue()
+    "X-Requested-With": "XMLHttpRequest"
   };
+  if (includeAuth){
+    headers["Authorization"] = getAuthHeaderValue();
+  }
   if (contentType != null) {
     headers["Content-Type"] = contentType;
   }
