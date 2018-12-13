@@ -9,7 +9,7 @@ import WrappedNewGroupModalContainer from "../containers/User/NewGroupModalConta
 
 const { Header } = Layout;
 
-export default () => (
+export default ({imagePath}) => (
   <Header
     mode="horizontal"
     style={{

@@ -72,8 +72,8 @@ class PostModalContainer extends Component {
   render() {
     const {getFieldDecorator} = this.props.form;
     return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
+      <div onClick={this.showModal}>
+        <Button type="primary" style={{ width: "50%", margin: "auto", display: "block" }}>
           New post
         </Button>
         <Modal
