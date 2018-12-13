@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
+import { Layout, Row, Col } from "antd";
 import UserHeaderContainer from "./containers/User/UserHeaderContainer";
 import UserSideBar from "./components/UserSideBar";
 import { getAuthHeaderValue } from "./GetToken.js";
 import Routes from "./Routes";
-import {getToken, userHasAuthenticated} from "./utils/AuthUtils";
+import { getToken, userHasAuthenticated } from "./utils/AuthUtils";
 
 class App extends Component {
   constructor() {
@@ -33,14 +33,14 @@ class App extends Component {
   };
 
   render() {
-    const childProps = {
-    };
+    const childProps = {};
 
     return userHasAuthenticated() ? (
       <Layout>
         <UserHeaderContainer />
         <Layout>
           <UserSideBar />
+
           <Routes childProps={childProps} />
         </Layout>
       </Layout>

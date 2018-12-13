@@ -9,6 +9,7 @@ import EditProfileContainer from "./containers/User/EditProfileContainer";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import GroupPage from "./pages/GroupPage";
+import EventPage from "./pages/EventPage";
 
 import UserGroups from "./containers/User/UserGroups";
 import PostContainer from "./containers/User/PostContainer";
@@ -24,6 +25,12 @@ export default ({ childProps }) => (
     <AuthenticatedRoute
       path="/groups/:groupName"
       exact component={GroupPage}
+      props={childProps}
+    />
+
+    <AuthenticatedRoute
+      path="/groups/:eid"
+      exact component={EventPage}
       props={childProps}
     />
 

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import UserProfileDropdown from "../../components/UserProfileDropdown";
+import UserProfileDropdownComponent from "../../components/UserProfileDropdownComponent";
 
-//NOTE: Currently unused as the component doesn't seem to require any state so far
 class UserProfileDropdownContainer extends Component {
   render() {
-    return <UserProfileDropdown />;
+    return <UserProfileDropdownComponent />;
   }
 }
 
