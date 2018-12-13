@@ -4,10 +4,12 @@ import { Row, Col, Avatar } from "antd";
 export default ({ fullName, majors, bio, photo }) => (
   <Row
     style={{
-      marginTop: 16,
-      marginBottom: 16,
+      margin: 16,
+      padding: 16,
       backgroundColor: "white",
-      color: "black"
+      color: "black",
+      boxShadow:
+        "0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)"
     }}
   >
     <Col type="flex" align="middle">
@@ -16,7 +18,6 @@ export default ({ fullName, majors, bio, photo }) => (
       <div> Studies: {majors} </div>
       <br />
       <div> {bio} </div>
-      <br />
     </Col>
   </Row>
 );
