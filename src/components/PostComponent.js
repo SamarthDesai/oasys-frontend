@@ -1,7 +1,8 @@
 import {
-  List, Icon, Avatar
+  List, Icon, Avatar, Button
 } from 'antd';
 import React from "react";
+import LikeComponent from "../components/LikeComponent";
 
 const IconText = ({type, text}) => (
   <span>
@@ -9,7 +10,7 @@ const IconText = ({type, text}) => (
     {text}
   </span>
 );
-export default ({post}) => {
+export default ({post, numLikes, action}) => {
   if (!post.creator) {
     return null;
   } else {
@@ -21,7 +22,7 @@ export default ({post}) => {
         renderItem={item => (
           <List.Item
             key={item.pid}
-            actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />,
+            actions={[<LikeComponent thing={action} text={numLikes}/>,
               <IconText type="message" text={item.numberOfComments} />]}
             extra={<img width={272} src={item.flock.photoPath}/>}
           >

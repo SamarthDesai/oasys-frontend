@@ -12,7 +12,7 @@ class JoinGroupInteractionContainer extends Component {
     }
 
     joinGroup = async () => {
-        //await postJson("/flocks/" + this.props.gid + "/members/current_user", {});
+        await postJson("/flocks/" + this.props.gid + "/members/current_user", {});
     };
 
     render() {
