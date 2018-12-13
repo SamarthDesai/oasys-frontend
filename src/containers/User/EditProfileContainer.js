@@ -16,7 +16,7 @@ class EditProfileContainer extends Component {
       confirmDirty: false,
       autoCompleteResult: [],
       name: "",
-      //majors: "",
+      majors: [],
       interests: "",
       gradYear: ""
     };
@@ -115,7 +115,7 @@ class EditProfileContainer extends Component {
           {getFieldDecorator("name", {})(<Input placeholder="Edit Full Name" />)}
         </FormItem>
   
-        Current Studies: {this.state.majors}
+        Current Studies: {this.state.majors.join(", ")}
         <FormItem {...formItemLayout}>
           {getFieldDecorator("majors", {/*TODO: rules :)*/})
           (<Select
