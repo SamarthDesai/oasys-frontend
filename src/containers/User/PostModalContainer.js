@@ -19,7 +19,6 @@ class PostModalContainer extends Component {
 
   componentDidMount() {
     // Instead fetch groups person is admin of
-    console.log(getAuthHeaderValue());
     fetch("http://localhost:8080/current_user/flocks", {
       method: "GET",
       headers: {
@@ -32,7 +31,6 @@ class PostModalContainer extends Component {
           console.log(responseJson);
           this.setState({
             flocks: responseJson.map((flock, _idx) => {
-              console.log("FLOCK: " + flock);
               return <Option value={flock.gid}>{flock.name}</Option>;
             })
           });
@@ -73,7 +71,10 @@ class PostModalContainer extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div onClick={this.showModal}>
-        <Button type="primary" style={{ width: "50%", margin: "auto", display: "block" }}>
+        <Button
+          type="primary"
+          style={{ width: "50%", margin: "auto", display: "block" }}
+        >
           New post
         </Button>
         <Modal

@@ -12,7 +12,10 @@ class App extends Component {
 
     this.state = {
       isAuthenticated: false,
-      isAuthenticating: true
+      isAuthenticating: true,
+      fullName: "",
+      photo: "",
+      bio: ""
     };
   }
 
@@ -23,6 +26,23 @@ class App extends Component {
       this.userHasAuthenticated(false);
     } else {
       this.userHasAuthenticated(true);
+
+      fetch("http://localhost:8080/current_user/", {
+        method: "GET",
+        headers: {
+          Authorization: getAuthHeaderValue()
+        }
+      })
+        .then(response => response.json())
+        .then(responseJson => {
+          if (responseJson != null) {
+            this.setState({
+              fullName: responseJson.name,
+              photo: responseJson.photoPath,
+              bio: responseJson.bio
+            });
+          }
+        });
     }
 
     this.setState({ isAuthenticating: false });
@@ -37,9 +57,13 @@ class App extends Component {
 
     return userHasAuthenticated() ? (
       <Layout>
-        <UserHeaderContainer />
+        <UserHeaderContainer photo={this.state.photo} />
         <Layout>
-          <UserSideBar />
+          <UserSideBar
+            fullName={this.state.fullName}
+            photo={this.state.photo}
+            bio={this.state.bio}
+          />
           <Routes childProps={childProps} />
         </Layout>
       </Layout>

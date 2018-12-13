@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import HomeProfileComponent from "../../components/HomeProfileComponent";
-import {getAuthHeaderValue} from "../../utils/AuthUtils";
+import { getAuthHeaderValue } from "../../utils/AuthUtils";
 
 class HomeProfileContainer extends Component {
   constructor() {
@@ -9,45 +9,29 @@ class HomeProfileContainer extends Component {
     this.state = {
       fullName: "",
       majors: [],
-      bio: "",
-      photo: ""
+      bio: ""
     };
   }
-
-
 
   componentDidMount() {
     //Get user picture for avatar, what they are studying, and "introduct yourself" description
     console.log(getAuthHeaderValue());
-    fetch("http://localhost:8080/current_user/", {
-      method: 'GET',
-      headers: {
-        Authorization: getAuthHeaderValue()
-      }
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        if (responseJson != null) {
-          this.setState(
-            { photo: responseJson.photoPath,
-              bio: responseJson.bio}
-          )
-        }
-      });
 
-      fetch("http://localhost:8080/current_user/majors", {
-      method: 'GET',
+    fetch("http://localhost:8080/current_user/majors", {
+      method: "GET",
       headers: {
         Authorization: getAuthHeaderValue()
       }
-    }).then((response) => response.json())
-      .then((responseJson) => {
+    })
+      .then(response => response.json())
+      .then(responseJson => {
         if (responseJson != null) {
-            var studies = []
-            majors: responseJson.map((major, _idx) => {
-              let name = major.name
-              studies.push(name)
-            })
-            this.setState({majors: studies})
+          var studies = [];
+          responseJson.map((major, _idx) => {
+            let name = major.name;
+            studies.push(name);
+          });
+          this.setState({ majors: studies });
         }
       });
   }
@@ -55,10 +39,10 @@ class HomeProfileContainer extends Component {
   render() {
     return (
       <HomeProfileComponent
-        fullName={this.state.fullName}
+        fullName={this.props.fullName}
         majors={this.state.majors}
-        bio={this.state.bio.substring(0, 40)}
-        photo={this.state.photo}
+        bio={this.props.bio.substring(0, 40)}
+        photo={this.props.photo}
       />
     );
   }
