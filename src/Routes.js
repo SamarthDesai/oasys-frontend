@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 import GroupPage from "./pages/GroupPage";
 import EventPage from "./pages/EventPage";
+import EditProfile from "./pages/EditProfile";
 
 import UserGroups from "./containers/User/UserGroups";
 import PostContainer from "./containers/User/PostContainer";
@@ -50,7 +51,7 @@ export default ({ childProps }) => (
     <AuthenticatedRoute
       path="/edit-profile"
       exact
-      component={EditProfileContainer}
+      component={EditProfile}
       props={childProps}
     />
       <AuthenticatedRoute

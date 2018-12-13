@@ -17,7 +17,7 @@ const menu = (
   <Anchor>
     <Menu onClick={onClick}>
       <Menu.Item key="1">
-        <Link to="/">Edit Profile</Link>
+        <Link to="/edit-profile">Edit Profile</Link>
       </Menu.Item>
       {/* <Menu.Item key="2">
         <Link to="/">Settings</Link>
