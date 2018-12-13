@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {getAuthHeaderValue} from "../../utils/AuthUtils";
-import {List} from "antd";
+import {List, Card} from "antd";
 import EventListingComponent from "../../components/EventListingComponent";
 import FeedPostComponent from "../../components/FeedPostComponent";
 
@@ -44,6 +44,7 @@ class EventListingContainer extends Component {
                         },
                     pageSize: 100
                 }}
+                style={{ marginTop:64}}
                 dataSource={this.state.events}
                 renderItem={item => <EventListingComponent item={item} />}
             />

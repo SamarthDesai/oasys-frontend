@@ -6,6 +6,7 @@ import {withRouter} from "react-router-dom";
 import GroupInfo from "../../components/GroupInfo";
 import EventInteractionComponent from "../../components/EventInteractionComponent";
 import FeedPostComponent from "../../components/FeedPostComponent";
+import WrappedMemberRequestsModalContainer from "./MemberRequestsModalContainer";
 
 
 const {TextArea} = Input;
@@ -89,11 +90,14 @@ class GroupListingContainer extends Component {
     }
     else {
         return (
+
             <Row>
                 <GroupInfo
                     name={this.state.groupInfo.name}
                     description={this.state.groupInfo.description}
                 />
+              <Row>
+                <WrappedMemberRequestsModalContainer gid={this.state.groupInfo.gid}/>
             <Row>
             <Col>
                 <List
@@ -105,6 +109,7 @@ class GroupListingContainer extends Component {
                     renderItem={item => <FeedPostComponent item={item} redirect={this.redirectToPost} />}
                 />
                 </Col>
+            </Row>
             </Row>
             </Row>
         );

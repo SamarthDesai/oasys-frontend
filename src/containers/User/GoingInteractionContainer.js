@@ -12,7 +12,6 @@ class GoingInteractionContainer extends Component {
       totalGoing: 0
     };
     this.loadGoing();
-    //this.going();
   }
 
     async loadGoing() {
@@ -51,7 +50,6 @@ class GoingInteractionContainer extends Component {
   modifyRSVP = async() => {
       let authHeader = getAuthHeaderValue();
       if (this.state.going === false) {
-        console.log("IM GOING NOW");
           await postJson("/current_user/going/" + this.props.event_id, {});
           this.setState({going: true});
           this.loadGoing();
@@ -64,7 +62,6 @@ class GoingInteractionContainer extends Component {
                   Authorization: authHeader
               }
           });
-          console.log("IM NOT GOING ANYMORE");
           this.setState({going: false});
       }
       this.loadGoing();

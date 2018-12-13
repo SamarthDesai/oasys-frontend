@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { getAuthHeaderValue } from "../../GetToken.js";
+import { Button, Col, List, Row, Select } from "antd";
+import DiscoverGroupListingComponent from "../../components/DiscoverGroupListingComponent";
 
 class DiscoverContainer extends Component {
   constructor() {
     super();
 
     this.state = {
+      search: "duke",
       groups: []
     };
   }
 
-  async componentDidMount() {
+  loadGroups = async () => {
     let authHeader = getAuthHeaderValue();
-    await fetch("http://localhost:8080/search/flocks/" + "duke", {
+    await fetch("http://localhost:8080/search/flocks/" + this.state.search, {
       method: "GET",
       headers: {
         Authorization: authHeader
@@ -21,17 +24,38 @@ class DiscoverContainer extends Component {
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson != null) {
-          var studies = [];
-          responseJson.map((major, _idx) => {
-            let name = major.name;
-            studies.push(name);
-          });
-          this.setState({ majors: studies });
+          this.setState({ groups: responseJson });
         }
       });
+  };
+
+  componentDidMount() {
+    this.loadGroups();
   }
+
   render() {
-    return <div />;
+    return (
+      (
+        <ul>
+          {this.state.groups.map(function(group, index) {
+            return (
+              <div key={index}>
+                <h1>{group.name}</h1>
+              </div>
+            );
+          })}
+        </ul>
+      ),
+      (
+        <List
+          itemLayout="vertical"
+          size="large"
+          style={{ marginTop: 64 }}
+          dataSource={this.state.groups}
+          renderItem={item => <DiscoverGroupListingComponent item={item} />}
+        />
+      )
+    );
   }
 }
 
