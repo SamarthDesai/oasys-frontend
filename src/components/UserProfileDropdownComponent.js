@@ -14,12 +14,12 @@ const onClick = ({ key }) => {
 const menu = (
   <Anchor>
     <Menu onClick={onClick}>
-      <Menu.Item key="1">
+      {/* <Menu.Item key="1">
         <Link to="/">Edit Profile</Link>
       </Menu.Item>
       <Menu.Item key="2">
         <Link to="/">Settings</Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item key="3">
         <Link to="/">Log Out</Link>
       </Menu.Item>
