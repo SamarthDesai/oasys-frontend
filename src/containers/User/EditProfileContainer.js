@@ -57,24 +57,14 @@ class EditProfileContainer extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:8080/interest/all", {
-      method: 'GET'
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        this.setState({interests: responseJson.map((interest, idx) => {
-            return <Option key={interest}>{interest}</Option>
-          })})
-      });
-
       fetch("http://localhost:8080/current_user/", {
         method: "GET",
         headers: {
           Authorization: getAuthHeaderValue()
         }
       })
-        .then(response => response.json())
-        .then(responseJson => {
+        .then((response) => response.json())
+        .then((responseJson) => {
           if (responseJson != null) {
             this.setState({
               name: responseJson.name,
@@ -101,17 +91,6 @@ class EditProfileContainer extends Component {
           this.setState({ majors: studies });
           }
         });
-
-
-    fetch("http://localhost:8080/study/all", {
-      method: 'GET'
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        this.setState({studies: responseJson.map((study, idx) => {
-            return <Option key={study}>{study}</Option>
-          })})
-      });
   }
 
   render() {
