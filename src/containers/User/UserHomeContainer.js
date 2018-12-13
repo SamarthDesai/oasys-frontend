@@ -38,12 +38,12 @@ class UserHomeContainer extends Component {
     return (
       <Row style={{ marginLeft: 256, marginTop: 64, marginRight: 16 }}>
         <Col type="flex" align="middle" style={{ marginLeft: 16 }}>
-          <FeedFilter
+          {/* <FeedFilter
             onChange={this.onChange}
             onCheckAllChange={this.onCheckAllChange}
             plainOptions={plainOptions}
             {...this.state}
-          />
+          /> */}
           <UserHomeFeed checked={this.state.checkedList} />
         </Col>
       </Row>
