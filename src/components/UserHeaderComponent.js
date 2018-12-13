@@ -9,7 +9,7 @@ import WrappedNewGroupModalContainer from "../containers/User/NewGroupModalConta
 
 const { Header } = Layout;
 
-export default ({ photo }) => (
+export default ({ photo, childProps }) => (
   <Header
     mode="horizontal"
     style={{
@@ -60,7 +60,7 @@ export default ({ photo }) => (
             <Menu.Item key="3">Pinned</Menu.Item>
             */}
           </Menu>
-          <UserProfileDropdownContainer photo={photo} />
+          <UserProfileDropdownContainer photo={photo} childProps={childProps} />
         </Row>
       </Col>
     </Row>
