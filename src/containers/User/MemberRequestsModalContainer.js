@@ -28,7 +28,7 @@ class MemberRequestsModalContainer extends Component {
   };
 
   deny = async (uid) => {
-    await fetch("/flocks/" + this.state.groupId + "/requests/" + uid, {
+    await fetch("http://localhost:8080/flocks/" + this.state.groupId + "/requests/" + uid, {
       method: 'DELETE',
       headers: { Authorization: getAuthHeaderValue() }
     });
@@ -45,7 +45,7 @@ class MemberRequestsModalContainer extends Component {
         this.setState({requestItems: responseJson.map((person, idx) => {
             return (<List.Item actions={[
               <ApproveButtonContainer approve={this.approve} uid={person.uid}/>,
-              <DenyButtonContainer approve={this.approve} uid={person.uid}/>]}>
+              <DenyButtonContainer deny={this.deny} uid={person.uid}/>]}>
               <List.Item.Meta
                 avatar={<Avatar src={person.photoPath} />}
                 title={<a href="https://ant.design">{person.name}</a>}
