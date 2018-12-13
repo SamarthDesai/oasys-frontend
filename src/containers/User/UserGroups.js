@@ -44,6 +44,7 @@ class UserGroups extends Component {
             <List
                 itemLayout="vertical"
                 size="large"
+                style={{ marginTop:70}}
                 dataSource={this.state.groups}
                 renderItem={item => <GroupListingComponent item={item} />}
             />

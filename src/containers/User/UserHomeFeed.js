@@ -58,6 +58,7 @@ class UserHomeFeed extends Component {
         size="large"
         loading={initLoading}
         loadMore={loadMore}
+        style={{ marginTop: 10}}
         dataSource={this.state.posts}
         renderItem={item => <FeedPostComponent item={item} redirect={this.redirectToPost} />}
       />

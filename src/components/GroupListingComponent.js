@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import {List, Avatar, Icon, Col, Row} from "antd";
+import {List, Avatar, Icon, Col, Row, Divider} from "antd";
 import PostInteraction from "./PostInteraction";
 import FeedFilter from "./FeedFilter";
 import UserHomeFeed from "../containers/User/UserHomeFeed";
 
 export default ({ item }) => (
-    <Row style={{ marginLeft: 256, marginTop: 64, marginRight: 16 }}>
-        <Col type="flex" align="middle" style={{ marginLeft: 16 }}>
+    <Row style={{ marginLeft: 256, marginRight: 16 }}>
+        <Col type="flex" align="left" style={{ marginLeft: 16 }}>
     <List.Item
         // key={item.name}
         actions={[
@@ -34,6 +34,7 @@ export default ({ item }) => (
                 src={item.photoPath}
             />
         }
+        
     >
         <List.Item.Meta
             title={<a href={item.href}>{item.name}</a>}
@@ -41,5 +42,6 @@ export default ({ item }) => (
         />
     </List.Item>
         </Col>
+        <Divider />
     </Row>
 );
