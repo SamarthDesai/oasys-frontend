@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       isAuthenticated: false,
       isAuthenticating: true,
+      alreadyAuthenticated: false,
       fullName: "",
       photo: "",
       bio: ""
@@ -52,12 +53,23 @@ class App extends Component {
     this.setState({ isAuthenticated: authenticated });
   };
 
+  userAlreadyAuthenticated = authenticated => {
+    this.setState({ alreadyAuthenticated: authenticated });
+  };
+
+
   render() {
-    const childProps = {};
+    const childProps = {
+      userAlreadyAuthenticated: this.userAlreadyAuthenticated,
+      isAuthenticated: this.state.isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated, 
+      isAuthenticating: this.state.isAuthenticating,
+      alreadyAuthenticated: this.state.alreadyAuthenticated
+    };
 
     return userHasAuthenticated() ? (
       <Layout>
-        <UserHeaderContainer photo={this.state.photo} />
+        <UserHeaderContainer childProps = {childProps} photo={this.state.photo} />
         <Layout>
           <UserSideBar
             fullName={this.state.fullName}

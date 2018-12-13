@@ -8,7 +8,7 @@ class GeneralHomePage extends Component {
   render() {
     return (
       <Layout>
-        <GeneralHeaderContainer />
+        <GeneralHeaderContainer childProps={this.props.childProps}/>
         <GeneralHomeContent />
         <GeneralFooter />
       </Layout>

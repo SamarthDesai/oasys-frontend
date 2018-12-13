@@ -1,15 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, Avatar, Dropdown, Anchor } from "antd";
+import { instanceOf } from 'prop-types';
 import LogoutContainer from "../containers/User/LogoutContainer";
-import { Cookies } from "react-cookie";
+import { withCookies, Cookies } from "react-cookie";
 
 const onClick = ({ key }) => {
-  if (key === 3) {
-    const cookies = Cookies.get("JSESSIONID");
-    console.log(cookies);
-    cookies.remove("JSESSIONID");
-    console.log(cookies);
+  if (key == 3) {
+    var cookies = document.cookie.split(";");
+    console.log(document.cookie)
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+    console.log(document.cookie)
+    //cookies.remove("");
   }
 };
 
