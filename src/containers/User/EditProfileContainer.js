@@ -54,69 +54,6 @@ class EditProfileContainer extends Component {
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   };
 
-  componentDidMount() {
-    fetch("http://localhost:8080/interest/all", {
-      method: "GET"
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        console.log(responseJson);
-        this.setState({
-          interests: responseJson.map((interest, idx) => {
-            return <Option key={interest}>{interest}</Option>;
-          })
-        });
-      });
-
-    fetch("http://localhost:8080/current_user/", {
-      method: "GET",
-      headers: {
-        Authorization: getAuthHeaderValue()
-      }
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        if (responseJson != null) {
-          this.setState({
-            name: responseJson.name,
-            interests: responseJson.interests,
-            gradYear: responseJson.graduationYear
-          });
-        }
-      });
-
-    fetch("http://localhost:8080/current_user/majors", {
-      method: "GET",
-      headers: {
-        Authorization: getAuthHeaderValue()
-      }
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        if (responseJson != null) {
-          var studies = [];
-          responseJson.map((major, _idx) => {
-            let name = major.name;
-            studies.push(name);
-          });
-          this.setState({ majors: studies });
-        }
-      });
-
-    fetch("http://localhost:8080/study/all", {
-      method: "GET"
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        console.log(responseJson);
-        this.setState({
-          studies: responseJson.map((study, idx) => {
-            return <Option key={study}>{study}</Option>;
-          })
-        });
-      });
-  }
-
   render() {
     const { getFieldDecorator } = this.props.form;
 

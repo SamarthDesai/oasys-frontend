@@ -34,7 +34,12 @@ export default ({ childProps }) => (
       props={childProps}
     />
 
-    <Route path="/" exact component={GeneralHomePage} props={childProps} />
+    <UnauthenticatedRoute
+      path="/"
+      exact
+      component={GeneralHomePage}
+      props={childProps}
+    />
     <UnauthenticatedRoute
       path="/signup"
       exact
