@@ -43,7 +43,7 @@ class HomeProfileContainer extends Component {
     return (
       <HomeProfileComponent
         fullName={this.props.fullName}
-        majors={this.state.majors}
+        majors={this.state.majors.join(", ")}
         bio={this.state.bio.substring(0, 40)}
         photo={this.props.photo}
       />
