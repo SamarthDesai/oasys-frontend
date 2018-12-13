@@ -39,9 +39,9 @@ class HomeProfileContainer extends Component {
   render() {
     return (
       <HomeProfileComponent
-        fullName={this.state.fullName}
+        fullName={this.props.fullName}
         majors={this.state.majors}
-        bio={this.state.bio.substring(0, 40)}
+        bio={this.props.bio.substring(0, 40)}
         photo={this.props.photo}
       />
     );
