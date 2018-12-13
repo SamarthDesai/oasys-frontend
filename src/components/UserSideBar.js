@@ -2,7 +2,7 @@ import React from "react";
 import { Layout, Icon } from "antd";
 import HomeProfileContainer from "../containers/User/HomeProfileContainer";
 import Calendar from "../containers/User/Calendar";
-import PostModalContainer from "../containers/User/PostModalContainer";
+import WrappedPostModalContainer from "../containers/User/PostModalContainer";
 import { userHasAuthenticated } from "../utils/AuthUtils";
 
 const { Sider } = Layout;
@@ -21,7 +21,7 @@ export default ({ fullName, photo, bio }) =>
       }}
     >
       <HomeProfileContainer fullName={fullName} photo={photo} bio={bio} />
-      <PostModalContainer />
+      <WrappedPostModalContainer />
       {/* <Calendar /> */}
     </Sider>
   ) : (
