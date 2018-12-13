@@ -1,4 +1,4 @@
 import React, { Component } from "react";
 import UserHeaderComponent from "../../components/UserHeaderComponent";
 
-export default ({ photo }) => <UserHeaderComponent photo={photo} />;
+export default ({ photo, childProps }) => <UserHeaderComponent childProps = {childProps} photo={photo} />;

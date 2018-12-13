@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Form, Input, Tooltip, Icon, Button, Select, Upload } from "antd";
-import {getAuthHeaderValue, login} from '../../utils/AuthUtils'
-import { postJson } from '../../utils/RestUtils'
+
+import { getAuthHeaderValue, login } from "../../utils/AuthUtils";
+import { postJson } from "../../utils/RestUtils";
+
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -24,19 +26,20 @@ class EditProfileContainer extends Component {
     e.preventDefault();
 
     this.props.form.validateFieldsAndScroll( async (err, values) => {
+
       if (!err) {
         // const username = values.email.substr(0, values.email.indexOf("@"));
         // // Add the user
         const photoPath = await this.state.photoPathPromise;
 
         // Add interests and studies to new user
-        if(values.name != null)
+
+        if (values.name != null) 
           postJson("/current_user/name", values.name);
         if (values.interests != null)
           postJson("/current_user/interests", values.interests);
         if (values.majors != null)
           postJson("/current_user/majors", values.majors);
-
 
         //Add session so that instead of general home page, it actually renders to user home
         this.props.history.push("/home");
@@ -46,9 +49,11 @@ class EditProfileContainer extends Component {
 
   upload = data => {
     let form = new FormData();
-    form.append('file', data.file, data.file.name);
+
+    form.append("file", data.file, data.file.name);
     let result = postJson("/image", form, null, false);
-    this.setState({photoPathPromise: result});
+    this.setState({ photoPathPromise: result });
+
   };
 
   handleConfirmBlur = e => {
@@ -92,6 +97,7 @@ class EditProfileContainer extends Component {
           }
         });
   }
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -139,12 +145,10 @@ class EditProfileContainer extends Component {
           </Select>)}
         </FormItem>
 
-        <FormItem
-          {...formItemLayout}
-        >
-          {getFieldDecorator('upload', {
+        <FormItem {...formItemLayout}>
+          {getFieldDecorator("upload", {
             label: "Profile Image",
-            valuePropName: 'imageUrl',
+            valuePropName: "imageUrl"
           })(
             <Upload
               name="photo"
@@ -152,7 +156,6 @@ class EditProfileContainer extends Component {
               customRequest={this.upload}
               headers={{
                 Authorization: getAuthHeaderValue(),
-
               }}
               listType="picture"
               multiple={false}
@@ -164,12 +167,6 @@ class EditProfileContainer extends Component {
             </Upload>
           )}
         </FormItem>
-        
-        <FormItem>
-          <Button type="primary" htmlType="submit">
-            Submit Changes
-          </Button>
-        </FormItem>
       </Form>
     );
   }
@@ -178,3 +175,4 @@ class EditProfileContainer extends Component {
 const WrappedEditProfileContainer = Form.create()(EditProfileContainer);
 
 export default withRouter(WrappedEditProfileContainer);
+

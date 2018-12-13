@@ -13,8 +13,7 @@ export default ({ item }) => (
   <List.Item
     key={item.title}    
     actions={[
-      <PinInteractionContainer />,
-      <GoingInteractionContainer />,
+      <GoingInteractionContainer event_id={item.eid}/>,
     ]}
   >
     <List.Item.Meta
@@ -23,6 +22,10 @@ export default ({ item }) => (
     />
     {item.summary}
   </List.Item>
+
+      {item.eid}
+
+
         </Col>
         <Divider />
     </Row>

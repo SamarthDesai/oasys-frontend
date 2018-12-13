@@ -75,7 +75,7 @@ class PostModalContainer extends Component {
           type="primary"
           style={{ width: "50%", margin: "auto", display: "block" }}
         >
-          New post
+          New Post
         </Button>
         <Modal
           title="New Post"

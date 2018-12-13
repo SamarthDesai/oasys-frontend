@@ -26,6 +26,8 @@ class LoginForm extends Component {
     const password = this.props.form.getFieldValue("password");
     const success = await login(username, password);
     if (success) {
+      //this.props.childProps.userAlreadyAuthenticated(true);
+      //this.props.childProps.userHasAuthenticated(true);
       this.props.history.push("/home");
     } else {
       // TODO (Ben): should probably just display little red error message here

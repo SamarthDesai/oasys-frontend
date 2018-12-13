@@ -16,14 +16,8 @@ export default ({ item }) => (
                 // onClick={this.pinPost}
                 text=""
             />,
-            /*<PostInteraction
-              icon="team-o"
-              type={this.state.going}
-              onClick={this.goToGroupPage}
-              text={this.state.totalGoing}
-            />,*/
             <PostInteraction
-                icon="message" // TODO: CHANGE ICON (Archana)
+                icon="message"
                 //onClick={}
             />
         ]}
@@ -37,7 +31,7 @@ export default ({ item }) => (
         
     >
         <List.Item.Meta
-            title={<a href={item.href}>{item.name}</a>}
+            title={<a href={"/groups/" + item.name }>{item.name}</a>}
             description={`${item.description}`}
         />
     </List.Item>

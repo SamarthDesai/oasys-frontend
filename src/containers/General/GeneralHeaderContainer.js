@@ -37,6 +37,7 @@ class GeneralHeaderContainer extends Component {
       <GeneralHeaderComponent
         backgroundColor={this.state.backgroundColor}
         logo={this.state.logo}
+        childProps = {this.props.childProps}
       />
     );
   }
