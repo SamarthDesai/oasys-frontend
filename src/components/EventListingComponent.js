@@ -22,10 +22,6 @@ export default ({ item }) => (
     />
     {item.summary}
   </List.Item>
-
-      {item.eid}
-
-
         </Col>
         <Divider />
     </Row>
