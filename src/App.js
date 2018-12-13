@@ -13,7 +13,9 @@ class App extends Component {
     this.state = {
       isAuthenticated: false,
       isAuthenticating: true,
-      photo: ""
+      fullName: "",
+      photo: "",
+      bio: ""
     };
   }
 
@@ -35,7 +37,9 @@ class App extends Component {
         .then(responseJson => {
           if (responseJson != null) {
             this.setState({
-              photo: responseJson.photoPath
+              fullName: responseJson.name,
+              photo: responseJson.photoPath,
+              bio: responseJson.bio
             });
           }
         });
@@ -55,7 +59,11 @@ class App extends Component {
       <Layout>
         <UserHeaderContainer photo={this.state.photo} />
         <Layout>
-          <UserSideBar photo={this.state.photo} />
+          <UserSideBar
+            fullName={this.state.fullName}
+            photo={this.state.photo}
+            bio={this.state.bio}
+          />
           <Routes childProps={childProps} />
         </Layout>
       </Layout>

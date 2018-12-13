@@ -7,7 +7,7 @@ import { userHasAuthenticated } from "../utils/AuthUtils";
 
 const { Sider } = Layout;
 
-export default ({ photo }) =>
+export default ({ fullName, photo, bio }) =>
   userHasAuthenticated() ? (
     <Sider
       width={256}
@@ -16,10 +16,11 @@ export default ({ photo }) =>
         marginTop: 64,
         height: "100%",
         position: "fixed",
+        backgroundColor: "transparent",
         left: 0
       }}
     >
-      <HomeProfileContainer photo={photo} />
+      <HomeProfileContainer fullName={fullName} photo={photo} bio={bio} />
       <PostModalContainer />
       {/* <Calendar /> */}
     </Sider>
