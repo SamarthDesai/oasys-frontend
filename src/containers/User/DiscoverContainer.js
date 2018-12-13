@@ -34,11 +34,10 @@ class DiscoverContainer extends Component {
   }
 
   render() {
-    const groups = this.state.groups;
     return (
       (
         <ul>
-          {groups.map(function(group, index) {
+          {this.state.groups.map(function(group, index) {
             return (
               <div key={index}>
                 <h1>{group.name}</h1>
@@ -51,6 +50,7 @@ class DiscoverContainer extends Component {
         <List
           itemLayout="vertical"
           size="large"
+          style={{ marginTop: 64 }}
           dataSource={this.state.groups}
           renderItem={item => <GroupListingComponent item={item} />}
         />
