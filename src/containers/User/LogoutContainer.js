@@ -6,8 +6,6 @@ import { withRouter } from "react-router-dom";
 //Not working, please fix
 class LogoutContainer extends Component {
   logOut = e => {
-    const cookies = Cookies.get("JSESSIONID");
-    cookies.remove("JSESSIONID");
     this.props.history.push("/");
   };
 

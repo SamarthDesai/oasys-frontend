@@ -12,7 +12,11 @@ class App extends Component {
 
     this.state = {
       isAuthenticated: false,
-      isAuthenticating: true
+      isAuthenticating: true,
+      alreadyAuthenticated: false,
+      fullName: "",
+      photo: "",
+      bio: ""
     };
   }
 
@@ -23,6 +27,23 @@ class App extends Component {
       this.userHasAuthenticated(false);
     } else {
       this.userHasAuthenticated(true);
+
+      fetch("http://localhost:8080/current_user/", {
+        method: "GET",
+        headers: {
+          Authorization: getAuthHeaderValue()
+        }
+      })
+        .then(response => response.json())
+        .then(responseJson => {
+          if (responseJson != null) {
+            this.setState({
+              fullName: responseJson.name,
+              photo: responseJson.photoPath,
+              bio: responseJson.bio
+            });
+          }
+        });
     }
 
     this.setState({ isAuthenticating: false });
@@ -32,14 +53,29 @@ class App extends Component {
     this.setState({ isAuthenticated: authenticated });
   };
 
+  userAlreadyAuthenticated = authenticated => {
+    this.setState({ alreadyAuthenticated: authenticated });
+  };
+
+
   render() {
-    const childProps = {};
+    const childProps = {
+      userAlreadyAuthenticated: this.userAlreadyAuthenticated,
+      isAuthenticated: this.state.isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated, 
+      isAuthenticating: this.state.isAuthenticating,
+      alreadyAuthenticated: this.state.alreadyAuthenticated
+    };
 
     return userHasAuthenticated() ? (
       <Layout>
-        <UserHeaderContainer />
+        <UserHeaderContainer childProps = {childProps} photo={this.state.photo} />
         <Layout>
-          <UserSideBar />
+          <UserSideBar
+            fullName={this.state.fullName}
+            photo={this.state.photo}
+            bio={this.state.bio}
+          />
           <Routes childProps={childProps} />
         </Layout>
       </Layout>

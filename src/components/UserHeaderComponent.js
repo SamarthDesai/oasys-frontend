@@ -9,14 +9,14 @@ import WrappedNewGroupModalContainer from "../containers/User/NewGroupModalConta
 
 const { Header } = Layout;
 
-export default ({imagePath}) => (
+export default ({ photo, childProps }) => (
   <Header
     mode="horizontal"
     style={{
       position: "fixed",
       zIndex: 1,
       width: "100%",
-      backgroundColor: "transparent",
+      backgroundColor: "#6699CC",
       lineHeight: "0px"
     }}
   >
@@ -30,7 +30,7 @@ export default ({imagePath}) => (
         <Row type="flex" align="middle">
           <Link to="/home">
             <img
-              src={blueIcon}
+              src={whiteIcon}
               style={{
                 height: "48px"
               }}
@@ -60,7 +60,7 @@ export default ({imagePath}) => (
             <Menu.Item key="3">Pinned</Menu.Item>
             */}
           </Menu>
-          <UserProfileDropdownContainer />
+          <UserProfileDropdownContainer photo={photo} childProps={childProps} />
         </Row>
       </Col>
     </Row>

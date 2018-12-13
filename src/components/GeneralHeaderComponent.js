@@ -5,7 +5,7 @@ import LoginForm from "../containers/General/LoginForm";
 
 const { Header } = Layout;
 
-export default ({ backgroundColor, logo }) => (
+export default ({ backgroundColor, logo, childProps }) => (
   <Header
     style={{
       position: "fixed",
@@ -30,7 +30,7 @@ export default ({ backgroundColor, logo }) => (
         </Link>
       </Col>
       <Col>
-        <LoginForm />
+        <LoginForm childProps={childProps}/>
       </Col>
     </Row>
   </Header>
