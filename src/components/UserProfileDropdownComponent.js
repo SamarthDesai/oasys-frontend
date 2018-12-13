@@ -27,11 +27,11 @@ const menu = (
   </Anchor>
 );
 
-export default () => (
+export default ({imagePath}) => (
   <Dropdown overlay={menu} style={{ position: "sticky" }}>
     <Avatar
       size="medium"
-      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+      src={imagePath}
       style={{ marginLeft: 16, backgroundColor: "white" }}
     />
   </Dropdown>

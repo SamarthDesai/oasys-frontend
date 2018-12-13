@@ -28,6 +28,7 @@ class PostContainer extends Component {
   }
 
   loadPostInfo() {
+      console.log("POST ID: " + this.state.post_id);
      fetch("http://localhost:8080/posts/" + this.state.post_id, {
       method: "GET",
       headers: {
@@ -48,6 +49,7 @@ class PostContainer extends Component {
       }
     }).then(response => response.json())
       .then(responseJson => {
+          console.log(responseJson);
         this.setState({comments: responseJson})
       })
        .catch(error => {
