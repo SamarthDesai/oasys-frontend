@@ -20,7 +20,6 @@ import DiscoverContainer from "./containers/User/DiscoverContainer";
 
 export default ({ childProps }) => (
   <Switch>
-    //<Route path="/groups/:groupName" exact component={GroupPage}/>
 
     <AuthenticatedRoute
       path="/groups/:groupName"

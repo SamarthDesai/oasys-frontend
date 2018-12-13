@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Modal, Button, Form, Select, Radio, Input, List} from 'antd';
+import {Modal, Button, Form, Select, Radio, Input, List, Row, Col} from 'antd';
 import {postJson} from "../../utils/RestUtils";
 import {getAuthHeaderValue} from "../../utils/AuthUtils";
 import {withRouter} from "react-router-dom";
@@ -82,29 +82,34 @@ class GroupListingContainer extends Component {
           </div>
     ) : null;
 
-    if (this.state.initLoading) {
+    if (this.state.initLoading || this.state.initLoadingPosts) {
       return (
           <h5>loading...</h5>
       )
     }
     else {
         return (
-            <GroupInfo
-                name={this.state.groupInfo.name}
-                description={this.state.groupInfo.description}
-            />,
-
-            <List
-              itemLayout="horizontal"
-              size="large"
-              loading={this.state.initLoadingPosts}
-              loadMore={loadMore}
-              dataSource={this.state.posts}
-              renderItem={item => <FeedPostComponent item={item} redirect={this.redirectToPost} />}
-        />
+            <Row>
+                <GroupInfo
+                    name={this.state.groupInfo.name}
+                    description={this.state.groupInfo.description}
+                />
+            <Row>
+            <Col>
+                <List
+                    itemLayout="horizontal"
+                    size="large"
+                    loading={this.state.initLoadingPosts}
+                    loadMore={loadMore}
+                    dataSource={this.state.posts}
+                    renderItem={item => <FeedPostComponent item={item} redirect={this.redirectToPost} />}
+                />
+                </Col>
+            </Row>
+            </Row>
         );
     }
   }
 }
 
-export default GroupListingContainer;
+export default withRouter(GroupListingContainer);
